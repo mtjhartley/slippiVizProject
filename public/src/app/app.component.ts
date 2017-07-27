@@ -15,10 +15,10 @@ export class AppComponent implements OnInit{
   stockData: object = {};
 
   allSets: Array<object> = [
+    {id: '7650198', url: 'dnDll8B1r5c', name: 'Hungrybox vs. Leffen', gameStarts: [71, 231, 463, 757]},
     {id: '7650196', url: 'Uk_nJAAESEw', name: 'PewPewU vs. Leffen', gameStarts: [53, 240, 382]},
     {id: '7650195', url: 'YG5gveWwFK8', name: "Hungrybox vs. S2J", gameStarts: [252, 583, 720, 897]},
     {id: '7650193', url: 'vQ7c73TBOSA', name: 'Armada vs. Infinite Numbers', gameStarts: [39, 389, 627]},
-    {id: '7650198', url: 'dnDll8B1r5c', name: 'Hungrybox vs. Leffen', gameStarts: [71, 231, 463, 757]},
     {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700]},
     {id: '7650197', url: 'jGdihA8pX0w', name: 'Armada vs. Lucky', gameStarts: [91, 322, 554]},
     {id: '7650210', url: 'oCl8iU2Q3hI', name: 'Infinite Numbers vs. Westballz', gameStarts: [170, 384, 680, 878, 1067]},
@@ -28,32 +28,22 @@ export class AppComponent implements OnInit{
     {id: '7687299', url: 'W5iQFzaD99w', name: 'ChuDat vs. SFAT', gameStarts: [152, 450, 685, 890]},
     {id: '7713733', url: '0GivvbOhqQg', name: 'Hungrybox vs. PewPewU', gameStarts: [58, 283, 558, 899]},
     {id: '7713734', url: 'WS92sI6Ju-k', name: 'Mew2King vs. Axe', gameStarts: [181, 535, 728, 993, 1230]},
-
     {id: '7713741', url: '8j6-16kWOMU', name: 'Infinite Numbers vs. S2J', gameStarts: [70, 307, 500, 756, 960]},
     {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749]},
     {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584]},
     {id: '7713747', url: 'TGyr6wjeFs4', name: 'Axe vs. Ice', gameStarts: [90, 254, 461, 603, 758]},
-
     {id: '7713735', url: 'zbGv0_5vPdc', name: 'Armada vs. Leffen', gameStarts: [136, 365, 493]},
     {id: '7713736', url: 'JnS_WcIMHsk', name: 'Mew2King vs. HungryBox', gameStarts: [76, 273, 594, 869]},
     {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159]},
     {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866]},
-
     {id: '7713750', url: 'X1dys1qMPPI', name: 'Mew2King vs. Plup', gameStarts: [62, 263, 472, 738, 913]},
     {id: '7713751', url: 'U5j2-Wk1ZOE', name: 'Leffen vs. Axe', gameStarts: [31, 252, 435]},
     {id: '7713752', url: 'mTFHQYF1P2M', name: 'Mew2King vs. Leffen', gameStarts: [186, 363, 446, 733]},
     {id: '7713753', url: 'mDvEz6r2zMY', name: 'Leffen vs. Hungrybox', gameStarts: [16, 249, 459, 660, 836]},
     {id: '7713738', url: 'WOXO78vw6nI', name: 'Armada vs. Hungrybox', gameStarts: [30, 132, 321, 575]},
-
-
-
-
-    //finish the rest later LMAO
   ];
 
   selectedSet: string = ""
-
-
   isDataAvailable = false;
   gameIds = [];
   playerIds = [];
@@ -65,6 +55,7 @@ export class AppComponent implements OnInit{
   p1Damage = 0;
   p1Frames = 0;
   p1Kills = 0;
+  p1MaxPunish
 
   p2sggId;
   p2Tag;
@@ -73,6 +64,7 @@ export class AppComponent implements OnInit{
   p2Damage = 0;
   p2Frames = 0;
   p2Kills = 0;
+  p2MaxPunish
 
   p1combos = [];
   p2combos = [];
@@ -80,9 +72,12 @@ export class AppComponent implements OnInit{
   p1game1combos = [];
   p2game1combos = [];
   p1win: number = 0; // will be changed to positive or negative
-  
-  url: any
 
+  playerTuplesForRegressionWithTimeAndGameId: Array<any>=[];
+  
+  game1WinProbabilities;
+
+  url: any
 
   doughnutChartData: number[]
   doughnutChartLabels: string[] = [this.p1Tag, this.p2Tag]
@@ -94,10 +89,35 @@ export class AppComponent implements OnInit{
   barChartData:any[] = [
     {data: [this.p1Punishes.length / this.p1Kills, this.p1Damage / this.p1Punishes.length], label: 'Player 1'},
     {data: [this.p2Punishes.length / this.p2Kills, this.p2Damage / this.p2Punishes.length], label: 'Player 2'},
-
   ]
+
+  lineChartData: Array<any> = [
+    {data: [.5,], label: 'Game 1'}
+  ]
+  lineChartLabels: Array<any> = [0];
+  lineChartType:string = 'line';
+  lineChartLegend:boolean = true;
+  lineChartColors:Array<any> = [
+    {
+      backgroundColor: 'rgba(0,255,0,0)',
+      borderColor: 'rgba(0,255,0,1)',
+    }
+  ]
+  lineChartOptions:any = {
+    responsive: true,
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: true,
+        }
+      }]
+    }
+  }
+
+
   ngOnInit() {
     window['onYouTubeIframeAPIReady'].call(null, this.allSets[this.setIndex]['url'])
+    this.changeVideo(this.allSets[this.setIndex]['url'])
     this.getSetData()
   }
   ngOnChanges() {
@@ -113,19 +133,100 @@ export class AppComponent implements OnInit{
   ){
     this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl+this.allSets[this.setIndex]['url'])
   }
-    
 
-    createRegressionPoints(gameId) {
-      let regressionTuples = []
-      console.log(typeof(gameId))
+    win_probability(p1Stock, p1Percent, p2Stock, p2Percent, gameId, frameStart) {
+      function stocks_as_float(stock, percent) {
+          return stock - Math.min(percent, 130) / 140.0
+      }
+      var p1Stocks = stocks_as_float(p1Stock, p1Percent)
+      var p2Stocks = stocks_as_float(p2Stock, p2Percent)
+      var stocksTakenAdvantage = Math.log10(p2Stocks / p1Stocks)
+      var percentIntoMatch = 1.0 - (p1Stocks + p2Stocks) / 8.0
+      var advantageWeight = -2.734 + 2.638 * percentIntoMatch
+      console.log('****')
+      console.log("p1Stock", p1Stock)
+      console.log("p1Percent", p1Percent)
+      console.log("p2Stock", p2Stock)
+      console.log("p2Percent", p2Percent)
+      console.log(.50 + stocksTakenAdvantage * advantageWeight)
+      console.log('****')
+      return [gameId, frameStart, Math.min(Math.max(0.50 + stocksTakenAdvantage * advantageWeight, 0.001), 0.999)]
+}
+
+    createWinProbabilityForAGame(arrayOfPlayerStocksAndPercentAtAtime){
+      console.log('creating the win probability for 1 game')
+      console.log("this is the array im passing in", arrayOfPlayerStocksAndPercentAtAtime)
+      var winProbabilities = []
+      for (var i = 0; i < arrayOfPlayerStocksAndPercentAtAtime.length; i++) {
+
+        winProbabilities.push(this.win_probability(arrayOfPlayerStocksAndPercentAtAtime[i][0],arrayOfPlayerStocksAndPercentAtAtime[i][1],arrayOfPlayerStocksAndPercentAtAtime[i][2],arrayOfPlayerStocksAndPercentAtAtime[i][3],arrayOfPlayerStocksAndPercentAtAtime[i][4],arrayOfPlayerStocksAndPercentAtAtime[i][5]))
+ 
+      }
+      console.log("winProbabilitiles", winProbabilities)
+      return winProbabilities
+    }
+
+
+  playerStocksAndPercentAtTime(gameId) {
+      let playerTuples = [] //
+      // console.log(typeof(gameId))
       let p1id = this.setData['games'][gameId]['players'][0]['id']
       let p1sggid = this.setData['games'][gameId]['players'][0]['playerId'] //sgg id
       let p1stocksArray = this.setData['games'][gameId]['players'][0]['stocks']
       let p2stocksArray = this.setData['games'][gameId]['players'][1]['stocks']
-
-
       let p2id = this.setData['games'][gameId]['players'][1]['id']
+      let p1stocks = 4
+      let p2stocks = 4
+      let p1percent = 0
+      let p2percent = 0
 
+      let p1combos = this.setData['games'][gameId]['players'][0]["comboStrings"]
+      let p2combos = this.setData['games'][gameId]['players'][1]['comboStrings']
+
+      let allcombos = p1combos.concat(p2combos)
+      var descendingFrameStart = allcombos.sort((a, b) => (a.frameStart) - (b.frameStart))
+
+      for (var i = 0; i < descendingFrameStart.length; i++) {
+        if (descendingFrameStart[i]['sPlayerId'] == p1id) {
+          // console.log(descendingFrameStart[i]['sPlayerId'])
+          // console.log(p1id)
+          if ((descendingFrameStart[i].percentStart < p2percent)) {
+            p2stocks -= 1
+            console.log('decrementing the player2 stock')
+          }
+          // if (((descendingFrameStart[i].percentStart < p2percent) || descendingFrameStart[i].percentStart == 0) && p2firstStock) {
+          //   p2firstStock = false;
+          // }
+          p2percent = descendingFrameStart[i]['percentEnd']
+
+        }
+        if (descendingFrameStart[i]['sPlayerId'] == p2id) {
+          if ((descendingFrameStart[i].percentStart < p1percent)) {
+            p1stocks -= 1
+            console.log('decrementing the player1 stock')
+          }
+          // if (((descendingFrameStart[i].percentStart < p1percent) || descendingFrameStart[i].percentStart == 0) && p1firstStock) {
+          //   p1firstStock = false;
+          // }
+          p1percent = descendingFrameStart[i]['percentEnd']
+        }
+       playerTuples.push([p1stocks, p1percent, p2stocks, p2percent, gameId, descendingFrameStart[i]['frameStart']])
+      }
+
+
+      console.log('******** end of createRegressionPoints *******')
+      return playerTuples      
+    }
+    
+
+    createRegressionPoints(gameId) {
+      let regressionTuples = []
+      // console.log(typeof(gameId))
+      let p1id = this.setData['games'][gameId]['players'][0]['id']
+      let p1sggid = this.setData['games'][gameId]['players'][0]['playerId'] //sgg id
+      let p1stocksArray = this.setData['games'][gameId]['players'][0]['stocks']
+      let p2stocksArray = this.setData['games'][gameId]['players'][1]['stocks']
+      let p2id = this.setData['games'][gameId]['players'][1]['id']
       let p1stocks = 4
       let p2stocks = 4
       let p1percent = 0
@@ -136,13 +237,10 @@ export class AppComponent implements OnInit{
       // console.log('creating hte regression points now')
       let p1combos = this.setData['games'][gameId]['players'][0]["comboStrings"]
       let p2combos = this.setData['games'][gameId]['players'][1]['comboStrings']
-
-      console.log()
-
       this.setData['games'][gameId]['players'][0]['stocksRemaining'] == 0 ? p1win = -1 : p1win = 1
-      console.log(typeof(this.setData['games'][gameId]['players'][0]['stocksRemaining']))
-      console.log("p1 win:", p1win)
-      console.log(gameId, "this is the game we are currently on leffen vs plup range from 1394, 1395, 1397, 1399")
+      // console.log(typeof(this.setData['games'][gameId]['players'][0]['stocksRemaining']))
+      // console.log("p1 win:", p1win)
+      // console.log(gameId, "this is the game we are currently on leffen vs plup range from 1394, 1395, 1397, 1399")
       let allcombos = p1combos.concat(p2combos)
       var descendingFrameStart = allcombos.sort((a, b) => (a.frameStart) - (b.frameStart))
       // console.log('all combos in the game, sorted by framestart')
@@ -202,6 +300,8 @@ export class AppComponent implements OnInit{
       this.p1Damage = 0;
       this.p1Frames = 0;
       this.p1Kills = 0;
+      this.p1MaxPunish = 0;
+
 
 
       this.p2sggId;
@@ -211,6 +311,10 @@ export class AppComponent implements OnInit{
       this.p2Damage = 0;
       this.p2Frames = 0;
       this.p2Kills = 0;
+      this.p2MaxPunish = 0;
+
+      this.allRegressionTuples = [];
+      this.playerTuplesForRegressionWithTimeAndGameId = [];
 
     }
 
@@ -288,6 +392,7 @@ export class AppComponent implements OnInit{
 
       for (var gameId in this.setData['games']) {
         this.allRegressionTuples.push(this.createRegressionPoints(gameId))
+        this.playerTuplesForRegressionWithTimeAndGameId.push(this.playerStocksAndPercentAtTime(gameId))
         console.log(gameId)
         this.gameIds.push(gameId)
 
@@ -332,8 +437,33 @@ export class AppComponent implements OnInit{
 
         // this.p1combos = [].concat.apply([], this.p1combos); //flattening the array of combo strings!
         // this.p2combos = [].concat.apply([], this.p2combos)
+        this.p1MaxPunish = this.p1Punishes[this.p1Punishes.map((o)=>o['damage']).indexOf(Math.max(...this.p1Punishes.map((o)=>o['damage'])))]
+        this.p2MaxPunish = this.p2Punishes[this.p2Punishes.map((o)=>o['damage']).indexOf(Math.max(...this.p2Punishes.map((o)=>o['damage'])))]
         this.isDataAvailable = true;
         console.log('printing all of the regression tuples', this.allRegressionTuples)
+        console.log('printing all of the data that we will be mapping to our graph', this.playerTuplesForRegressionWithTimeAndGameId)
+          
+        //lineChart generation, let's see if we can dynamically change the game...
+
+        console.log(this.playerTuplesForRegressionWithTimeAndGameId[0])
+        this.game1WinProbabilities = this.createWinProbabilityForAGame(this.playerTuplesForRegressionWithTimeAndGameId[0])
+        console.log('logging the game 1 win prob', this.game1WinProbabilities)
+        this.lineChartData[0]['data'] = [.5]
+        this.lineChartLabels = [0]
+        console.log(this.setData[this.setIndex])
+        for (let i = 0; i < this.game1WinProbabilities.length; i++) {
+          this.lineChartData[0]['data'].push(this.game1WinProbabilities[i][2])
+          var varIndex = this.gameIds.indexOf(this.game1WinProbabilities[i][0]) //this gets me the index of the gameStarts array
+          var gameStart = this.allSets[this.setIndex]['gameStarts'][varIndex]
+          console.log('here are teh var index and gamestarts')
+          console.log(varIndex)
+          console.log(gameStart + this.game1WinProbabilities[i][1]/60)
+          this.lineChartLabels.push(Math.floor(gameStart + this.game1WinProbabilities[i][1]/60)) 
+        }
+        console.log("these are the data and the labels lmao")
+        console.log(this.lineChartData)
+        console.log(this.lineChartLabels)
+        console.log('p1 max punish', this.p1MaxPunish)
     })
     .catch(err => console.log(err))
     }

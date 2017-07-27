@@ -1,5 +1,5 @@
 // Estimates the probability that p1 wins
-function win_probability(p1Stock, p1Percent, p2Stock, p2Percent) {
+function win_probability(p1Stock, p1Percent, p2Stock, p2Percent, gameId, frameStart) {
     function stocks_as_float(stock, percent) {
         return stock - Math.min(percent, 130) / 140.0
     }
@@ -10,7 +10,7 @@ function win_probability(p1Stock, p1Percent, p2Stock, p2Percent) {
     percentIntoMatch = 1.0 - (p1Stocks + p2Stocks) / 8.0
     
     advantageWeight = -2.734 + 2.638 * percentIntoMatch
-    return Math.min(Math.max(0.50 + stocksTakenAdvantage * advantageWeight, 0.001), 0.999)
+    return [gameId, frameStart, Math.min(Math.max(0.50 + stocksTakenAdvantage * advantageWeight, 0.001), 0.999)]
 }
 
 console.log(win_probability(2, 10, 2, 20))
