@@ -1,4 +1,4 @@
-import { Component, OnChanges } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { SmashggService } from './smashgg.service'
 import { DomSanitizer } from '@angular/platform-browser';
  
@@ -7,7 +7,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Slippi Stats Viz';
   setId: string = 'default'
   setIndex: number = 0;
@@ -25,6 +25,29 @@ export class AppComponent {
     {id: '7650213', url: '3fRvGxcXOGg', name: 'Lucky vs. PewPewU', gameStarts: [66,209, 453, 662]},
     {id: '7650212', url: 'Q1iWee-GstU', name: 'Leffen vs. Infinite Numbers', gameStarts: [202, 453, 687]},
     {id: '7687298', url: 'ps0rsWiesx8', name: 'HugS vs. Axe', gameStarts: [94, 487, 736, 1023, 1287]},
+    {id: '7687299', url: 'W5iQFzaD99w', name: 'ChuDat vs. SFAT', gameStarts: [152, 450, 685, 890]},
+    {id: '7713733', url: '0GivvbOhqQg', name: 'Hungrybox vs. PewPewU', gameStarts: [58, 283, 558, 899]},
+    {id: '7713734', url: 'WS92sI6Ju-k', name: 'Mew2King vs. Axe', gameStarts: [181, 535, 728, 993, 1230]},
+
+    {id: '7713741', url: '8j6-16kWOMU', name: 'Infinite Numbers vs. S2J', gameStarts: [70, 307, 500, 756, 960]},
+    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749]},
+    {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584]},
+    {id: '7713747', url: 'TGyr6wjeFs4', name: 'Axe vs. Ice', gameStarts: [90, 254, 461, 603, 758]},
+
+    {id: '7713735', url: 'zbGv0_5vPdc', name: 'Armada vs. Leffen', gameStarts: [136, 365, 493]},
+    {id: '7713736', url: 'JnS_WcIMHsk', name: 'Mew2King vs. HungryBox', gameStarts: [76, 273, 594, 869]},
+    {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159]},
+    {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866]},
+
+    {id: '7713750', url: 'X1dys1qMPPI', name: 'Mew2King vs. Plup', gameStarts: [62, 263, 472, 738, 913]},
+    {id: '7713751', url: 'U5j2-Wk1ZOE', name: 'Leffen vs. Axe', gameStarts: [31, 252, 435]},
+    {id: '7713752', url: 'mTFHQYF1P2M', name: 'Mew2King vs. Leffen', gameStarts: [186, 363, 446, 733]},
+    {id: '7713753', url: 'mDvEz6r2zMY', name: 'Leffen vs. Hungrybox', gameStarts: [16, 249, 459, 660, 836]},
+    {id: '7713738', url: 'WOXO78vw6nI', name: 'Armada vs. Hungrybox', gameStarts: [30, 132, 321, 575]},
+
+
+
+
     //finish the rest later LMAO
   ];
 
@@ -65,14 +88,18 @@ export class AppComponent {
   doughnutChartLabels: string[] = [this.p1Tag, this.p2Tag]
   doughtnutChartType: string
 
-  barChartLabels: string[] = ['Average Openings to Kill', 'Average Damage Per Opening', 'Average Hits Per Combo', ]
+  barChartLabels: string[] = ['Average Openings to Kill', 'Average Damage Per Opening', ]
   barChartType:string =  'bar'
   barChartLegend:boolean = true;
   barChartData:any[] = [
-    {data: [this.p1Punishes.length / this.p1Kills, this.p1Damage / this.p1Punishes.length, this.p1Hits / this.p1Punishes.length], label: 'Player 1'},
-    {data: [this.p2Punishes.length / this.p2Kills, this.p2Damage / this.p2Punishes.length, this.p2Hits / this.p2Punishes.length], label: 'Player 2'},
+    {data: [this.p1Punishes.length / this.p1Kills, this.p1Damage / this.p1Punishes.length], label: 'Player 1'},
+    {data: [this.p2Punishes.length / this.p2Kills, this.p2Damage / this.p2Punishes.length], label: 'Player 2'},
 
   ]
+  ngOnInit() {
+    window['onYouTubeIframeAPIReady'].call(null, this.allSets[this.setIndex]['url'])
+    this.getSetData()
+  }
   ngOnChanges() {
     this.getSetData()
   }
@@ -166,6 +193,7 @@ export class AppComponent {
     }
     resetGlobals() {
       this.playerIds = [];
+      this.gameIds = [];
 
       this.p1sggId;
       this.p1Tag;
@@ -192,14 +220,42 @@ export class AppComponent {
       console.log('this is a list of the game ids for this current set', this.gameIds)
       var varIndex = this.gameIds.indexOf(gameId)
       console.log(varIndex)
-      window['player'].seekTo(time/60 + this.allSets[this.setIndex]['gameStarts'][varIndex])
+      console.log('************ THIS IS THE CURRENT VIDEO TIME************')
+      console.log(window['player'].getCurrentTime())
+      window['player'].seekTo(0)
+
+      console.log("THIS IS THE TIME WE ARE TRYING TO SEEK TO ", time/60 + this.allSets[this.setIndex]['gameStarts'][varIndex])
+      console.log("THIS IS NOT WORKIGN ^^ WHY")
+      console.log("THIS IS TIME/60", time/60)
+      console.log(this.allSets[this.setIndex]['gameStarts'][varIndex])
+      console.log("THE INDEX IS UNDEFINED WHY")
+      console.log("THIS IS THE ALLSETS[SET INDEX]")
+      console.log(this.allSets[this.setIndex])
+      console.log("THIS IS THE ALLSETS[SETINDEX]['gameSTARTS']")
+      console.log(this.allSets[this.setIndex]['gameStarts'])
+      console.log("THIS IS allsets[setindex][gamestarts][varindex]")
+      console.log(this.allSets[this.setIndex]['gameStarts'][varIndex])
+
+      
+      window['player'].seekTo(time/60 + this.allSets[this.setIndex]['gameStarts'][varIndex], true)
+
       window['player'].playVideo();
+      window.scrollTo(0,0);
+    }
+    changeVideo(videoId){
+      window['player'].loadVideoById(videoId);
+      window['player'].playVideo();
+      window['player'].seekTo(0, true);
+      console.log('after changing the video')
+      console.log(window['player'])
     }
 
   getSetData() {
     console.log(this.allSets[this.setIndex]['url'])
-    window['onYouTubeIframeAPIReady'].call(null, this.allSets[this.setIndex]['url'])
-    this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl+this.allSets[this.setIndex]['url'])
+    this.changeVideo(this.allSets[this.setIndex]['url'])
+    // window['onYouTubeIframeAPIReady'].call(null, this.allSets[this.setIndex]['url'])
+
+    // this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl+this.allSets[this.setIndex]['url'])
     console.log('getting the set ID', this.allSets[this.setIndex]['id'])
     this._smashggService.retrieveSetData(this.allSets[this.setIndex]['id'])
     .then(data => {
