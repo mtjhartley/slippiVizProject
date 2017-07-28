@@ -74,6 +74,7 @@ export class AppComponent implements OnInit{
   p1win: number = 0; // will be changed to positive or negative
 
   playerTuplesForRegressionWithTimeAndGameId: Array<any>=[];
+  globalLineChartData;
   
   game1WinProbabilities;
 
@@ -151,7 +152,7 @@ export class AppComponent implements OnInit{
       console.log(.50 + stocksTakenAdvantage * advantageWeight)
       console.log('****')
       return [gameId, frameStart, Math.min(Math.max(0.50 + stocksTakenAdvantage * advantageWeight, 0.001), 0.999)]
-}
+    }
 
     createWinProbabilityForAGame(arrayOfPlayerStocksAndPercentAtAtime){
       console.log('creating the win probability for 1 game')
@@ -248,32 +249,21 @@ export class AppComponent implements OnInit{
 
       for (var i = 0; i < descendingFrameStart.length; i++) {
         if (descendingFrameStart[i]['sPlayerId'] == p1id) {
-          // console.log(descendingFrameStart[i]['sPlayerId'])
-          // console.log(p1id)
           if ((descendingFrameStart[i].percentStart < p2percent)) {
             p2stocks -= 1
             console.log('decrementing the player2 stock')
           }
-          // if (((descendingFrameStart[i].percentStart < p2percent) || descendingFrameStart[i].percentStart == 0) && p2firstStock) {
-          //   p2firstStock = false;
-          // }
           p2percent = descendingFrameStart[i]['percentEnd']
-
         }
         if (descendingFrameStart[i]['sPlayerId'] == p2id) {
           if ((descendingFrameStart[i].percentStart < p1percent)) {
             p1stocks -= 1
             console.log('decrementing the player1 stock')
           }
-          // if (((descendingFrameStart[i].percentStart < p1percent) || descendingFrameStart[i].percentStart == 0) && p1firstStock) {
-          //   p1firstStock = false;
-          // }
           p1percent = descendingFrameStart[i]['percentEnd']
         }
        regressionTuples.push([p1stocks, p2stocks, p1percent, p2percent, p1win])
       }
-
-
       console.log('******** end of createRegressionPoints *******')
       return regressionTuples      
     }
@@ -302,8 +292,6 @@ export class AppComponent implements OnInit{
       this.p1Kills = 0;
       this.p1MaxPunish = 0;
 
-
-
       this.p2sggId;
       this.p2Tag;
       this.p2Punishes = [];
@@ -313,45 +301,84 @@ export class AppComponent implements OnInit{
       this.p2Kills = 0;
       this.p2MaxPunish = 0;
 
+      this.globalLineChartData;
+
       this.allRegressionTuples = [];
       this.playerTuplesForRegressionWithTimeAndGameId = [];
 
     }
+    createLineChartData (playerTuplesForRegressionWithTimeAndGameId) {
+      var setChartData = []
+      for (let i = 0; i < playerTuplesForRegressionWithTimeAndGameId.length; i++) {
+        var chartDataAndLabels = {}
+        var gameWinProbabilities = this.createWinProbabilityForAGame(playerTuplesForRegressionWithTimeAndGameId[i])
+        var lineChartData = [.5]
+        var lineChartLabels = [0]
+        for (let j = 0; j < gameWinProbabilities.length; j++) {
+          lineChartData.push(gameWinProbabilities[j][2])
+          var varIndex = this.gameIds.indexOf(gameWinProbabilities[j][0])
+          var gameStart = this.allSets[this.setIndex]['gameStarts'][varIndex]
+          console.log('the game start is', gameStart)
+          lineChartLabels.push(Math.floor(gameStart + gameWinProbabilities[j][1]/60))
+        }
+        chartDataAndLabels['data'] = lineChartData
+        chartDataAndLabels['labels'] = lineChartLabels
+        setChartData.push(chartDataAndLabels)
+      }
+      return setChartData
+    } 
+
+    updateLineChartData(gameId) {
+      var gameIndex = this.gameIds.indexOf(gameId) //this will get us the index of the game in our array of gameIds
+      //we know this index matches the index of our globalLineChartData array
+      //thus we can set the data of our linechart to 
+      console.log('this is the game index', gameIndex)
+      console.log('this is the linechart data', this.lineChartData)
+      console.log('this is what im setting the data to be', this.globalLineChartData[gameIndex]['data'])
+      // this.lineChartData = [
+      //   {data: this.globalLineChartData[gameIndex]['data'], label: gameId},
+      //   ] //update the array
+      this.lineChartData[0]['data'] = this.globalLineChartData[gameIndex]['data']
+      this.lineChartData[0]['label'] = 'Game' + (gameIndex + 1).toString()
+      // this.lineChartData[0]['label'] = gameId //update the labels
+      console.log('these are the labels i am trying to use', this.globalLineChartData[gameIndex]['labels'])
+      this.lineChartLabels = this.globalLineChartData[gameIndex]['labels']
+      this.lineChartType = 'line'
+      // this.lineChartData = this.lineChartData.slice();
+      console.log('this is the linechart data now, after clicking', this.lineChartData)
+    }
 
     seekToTime(time, gameId) {
-      console.log('seeking to', time)
-      console.log('this is the id of the current game', gameId)
-      console.log('this is a list of the game ids for this current set', this.gameIds)
+      // console.log('seeking to', time)
+      // console.log('this is the id of the current game', gameId)
+      // console.log('this is a list of the game ids for this current set', this.gameIds)
       var varIndex = this.gameIds.indexOf(gameId)
-      console.log(varIndex)
-      console.log('************ THIS IS THE CURRENT VIDEO TIME************')
-      console.log(window['player'].getCurrentTime())
+      // console.log(varIndex)
+      // console.log('************ THIS IS THE CURRENT VIDEO TIME************')
+      // console.log(window['player'].getCurrentTime())
       window['player'].seekTo(0)
-
-      console.log("THIS IS THE TIME WE ARE TRYING TO SEEK TO ", time/60 + this.allSets[this.setIndex]['gameStarts'][varIndex])
-      console.log("THIS IS NOT WORKIGN ^^ WHY")
-      console.log("THIS IS TIME/60", time/60)
-      console.log(this.allSets[this.setIndex]['gameStarts'][varIndex])
-      console.log("THE INDEX IS UNDEFINED WHY")
-      console.log("THIS IS THE ALLSETS[SET INDEX]")
-      console.log(this.allSets[this.setIndex])
-      console.log("THIS IS THE ALLSETS[SETINDEX]['gameSTARTS']")
-      console.log(this.allSets[this.setIndex]['gameStarts'])
-      console.log("THIS IS allsets[setindex][gamestarts][varindex]")
-      console.log(this.allSets[this.setIndex]['gameStarts'][varIndex])
-
-      
+      // console.log("THIS IS THE TIME WE ARE TRYING TO SEEK TO ", time/60 + this.allSets[this.setIndex]['gameStarts'][varIndex])
+      // console.log("THIS IS NOT WORKIGN ^^ WHY")
+      // console.log("THIS IS TIME/60", time/60)
+      // console.log(this.allSets[this.setIndex]['gameStarts'][varIndex])
+      // console.log("THE INDEX IS UNDEFINED WHY")
+      // console.log("THIS IS THE ALLSETS[SET INDEX]")
+      // console.log(this.allSets[this.setIndex])
+      // console.log("THIS IS THE ALLSETS[SETINDEX]['gameSTARTS']")
+      // console.log(this.allSets[this.setIndex]['gameStarts'])
+      // console.log("THIS IS allsets[setindex][gamestarts][varindex]")
+      // console.log(this.allSets[this.setIndex]['gameStarts'][varIndex])
       window['player'].seekTo(time/60 + this.allSets[this.setIndex]['gameStarts'][varIndex], true)
-
       window['player'].playVideo();
       window.scrollTo(0,0);
     }
+
     changeVideo(videoId){
       window['player'].loadVideoById(videoId);
       window['player'].playVideo();
       window['player'].seekTo(0, true);
-      console.log('after changing the video')
-      console.log(window['player'])
+      // console.log('after changing the video')
+      // console.log(window['player'])
     }
 
   getSetData() {
@@ -363,24 +390,24 @@ export class AppComponent implements OnInit{
     console.log('getting the set ID', this.allSets[this.setIndex]['id'])
     this._smashggService.retrieveSetData(this.allSets[this.setIndex]['id'])
     .then(data => {
-      console.log("got the data form this swag request on our server!!")
+      // console.log("got the data form this swag request on our server!!")
       this.resetGlobals()
-      console.log('logging the data ****', data)
+      // console.log('logging the data ****', data)
       
-      console.log(typeof(data))
+      // console.log(typeof(data))
       this.doughnutChartLabels = ['','']
       this.setData = data;
-      console.log("logging our global variable this.setData", this.setData)
+      // console.log("logging our global variable this.setData", this.setData)
       // for (var key in this.setData) {
       //   console.log("this is a key in my dataset", key)
       // }
-
-      console.log('logging this.setData["summary"]', this.setData['summary'])
+      // console.log('logging this.setData["summary"]', this.setData['summary'])
 
       for (var key in this.setData['summary']) {
-        console.log('logging the first key', key)
+        // console.log('logging the first key', key)
         this.playerIds.push(key)
       }
+
       this.p1sggId = this.playerIds[1]
       console.log('******** this.playerIds array **********')
       console.log(this.playerIds)
@@ -445,25 +472,43 @@ export class AppComponent implements OnInit{
           
         //lineChart generation, let's see if we can dynamically change the game...
 
-        console.log(this.playerTuplesForRegressionWithTimeAndGameId[0])
-        this.game1WinProbabilities = this.createWinProbabilityForAGame(this.playerTuplesForRegressionWithTimeAndGameId[0])
-        console.log('logging the game 1 win prob', this.game1WinProbabilities)
-        this.lineChartData[0]['data'] = [.5]
-        this.lineChartLabels = [0]
-        console.log(this.setData[this.setIndex])
-        for (let i = 0; i < this.game1WinProbabilities.length; i++) {
-          this.lineChartData[0]['data'].push(this.game1WinProbabilities[i][2])
-          var varIndex = this.gameIds.indexOf(this.game1WinProbabilities[i][0]) //this gets me the index of the gameStarts array
-          var gameStart = this.allSets[this.setIndex]['gameStarts'][varIndex]
-          console.log('here are teh var index and gamestarts')
-          console.log(varIndex)
-          console.log(gameStart + this.game1WinProbabilities[i][1]/60)
-          this.lineChartLabels.push(Math.floor(gameStart + this.game1WinProbabilities[i][1]/60)) 
-        }
-        console.log("these are the data and the labels lmao")
-        console.log(this.lineChartData)
-        console.log(this.lineChartLabels)
-        console.log('p1 max punish', this.p1MaxPunish)
+        // console.log(this.playerTuplesForRegressionWithTimeAndGameId[0])
+        // this.game1WinProbabilities = this.createWinProbabilityForAGame(this.playerTuplesForRegressionWithTimeAndGameId[0])
+        // console.log('logging the game 1 win prob', this.game1WinProbabilities)
+        // this.lineChartData[0]['data'] = [.5]
+        // this.lineChartLabels = [0]
+        // console.log(this.setData[this.setIndex])
+        // for (let i = 0; i < this.game1WinProbabilities.length; i++) {
+        //   this.lineChartData[0]['data'].push(this.game1WinProbabilities[i][2])
+        //   var varIndex = this.gameIds.indexOf(this.game1WinProbabilities[i][0]) //this gets me the index of the gameStarts array
+        //   var gameStart = this.allSets[this.setIndex]['gameStarts'][varIndex]
+        //   console.log('here are teh var index and gamestarts')
+        //   console.log(varIndex)
+        //   console.log(gameStart + this.game1WinProbabilities[i][1]/60)
+        //   this.lineChartLabels.push(Math.floor(gameStart + this.game1WinProbabilities[i][1]/60)) 
+        // }
+        // console.log("these are the data and the labels lmao")
+        // console.log(this.lineChartData)
+        // console.log(this.lineChartLabels)
+
+        this.globalLineChartData = this.createLineChartData(this.playerTuplesForRegressionWithTimeAndGameId)
+
+        console.log('doing the initial update')
+        this.updateLineChartData(this.gameIds[0])
+        // console.log('this is the global linechart data', this.globalLineChartData)
+        // this.lineChartData[0]['data'] = this.globalLineChartData[0]['data'] //update the array
+        // this.lineChartData[0]['label'] = this.globalLineChartData[0]['labels']
+        // this.lineChartLabels = this.globalLineChartData[0]['labels']
+
+        //
+        //we should be able to get the current gameId
+        //list of regressions for every game -> this.playerTuplesForRegressionWithTimeAndGameId
+
+
+          //return an array of objects, containing the data and labels
+          //on click, we will get an index from this array, and use the array[index] -> object to update our line chart
+
+        
     })
     .catch(err => console.log(err))
     }
