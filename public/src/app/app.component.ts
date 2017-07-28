@@ -15,34 +15,34 @@ export class AppComponent implements OnInit{
   stockData: object = {};
 
   allSets: Array<object> = [
-    {id: '7650198', url: 'dnDll8B1r5c', name: 'Hungrybox vs. Leffen', gameStarts: [71, 231, 463, 757]},
-    {id: '7650196', url: 'Uk_nJAAESEw', name: 'PewPewU vs. Leffen', gameStarts: [53, 240, 382]},
-    {id: '7650195', url: 'YG5gveWwFK8', name: "Hungrybox vs. S2J", gameStarts: [252, 583, 720, 897]},
+    {id: '7713738', url: 'WOXO78vw6nI', name: 'Armada vs. Hungrybox', gameStarts: [30, 132, 321, 575]},
     {id: '7650193', url: 'vQ7c73TBOSA', name: 'Armada vs. Infinite Numbers', gameStarts: [39, 389, 627]},
-    {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700]},
-    {id: '7650197', url: 'jGdihA8pX0w', name: 'Armada vs. Lucky', gameStarts: [91, 322, 554]},
-    {id: '7650210', url: 'oCl8iU2Q3hI', name: 'Infinite Numbers vs. Westballz', gameStarts: [170, 384, 680, 878, 1067]},
-    {id: '7650213', url: '3fRvGxcXOGg', name: 'Lucky vs. PewPewU', gameStarts: [66,209, 453, 662]},
-    {id: '7650212', url: 'Q1iWee-GstU', name: 'Leffen vs. Infinite Numbers', gameStarts: [202, 453, 687]},
-    {id: '7687298', url: 'ps0rsWiesx8', name: 'HugS vs. Axe', gameStarts: [94, 487, 736, 1023, 1287]},
-    {id: '7687299', url: 'W5iQFzaD99w', name: 'ChuDat vs. SFAT', gameStarts: [152, 450, 685, 890]},
-    {id: '7713733', url: '0GivvbOhqQg', name: 'Hungrybox vs. PewPewU', gameStarts: [58, 283, 558, 899]},
-    {id: '7713734', url: 'WS92sI6Ju-k', name: 'Mew2King vs. Axe', gameStarts: [181, 535, 728, 993, 1230]},
-    {id: '7713741', url: '8j6-16kWOMU', name: 'Infinite Numbers vs. S2J', gameStarts: [70, 307, 500, 756, 960]},
-    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749]},
-    {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584]},
-    {id: '7713747', url: 'TGyr6wjeFs4', name: 'Axe vs. Ice', gameStarts: [90, 254, 461, 603, 758]},
     {id: '7713735', url: 'zbGv0_5vPdc', name: 'Armada vs. Leffen', gameStarts: [136, 365, 493]},
-    {id: '7713736', url: 'JnS_WcIMHsk', name: 'Mew2King vs. HungryBox', gameStarts: [76, 273, 594, 869]},
-    {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159]},
-    {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866]},
-    {id: '7713750', url: 'X1dys1qMPPI', name: 'Mew2King vs. Plup', gameStarts: [62, 263, 472, 738, 913]},
+    {id: '7650197', url: 'jGdihA8pX0w', name: 'Armada vs. Lucky', gameStarts: [91, 322, 554]},
+    {id: '7713747', url: 'TGyr6wjeFs4', name: 'Axe vs. Ice', gameStarts: [90, 254, 461, 603, 758]},
+    {id: '7687299', url: 'W5iQFzaD99w', name: 'ChuDat vs. SFAT', gameStarts: [152, 450, 685, 890]},
+    {id: '7687298', url: 'ps0rsWiesx8', name: 'HugS vs. Axe', gameStarts: [94, 487, 736, 1023, 1287]},
+    {id: '7650198', url: 'dnDll8B1r5c', name: 'Hungrybox vs. Leffen', gameStarts: [71, 231, 463, 757]},
+    {id: '7713733', url: '0GivvbOhqQg', name: 'Hungrybox vs. PewPewU', gameStarts: [58, 283, 558, 899]},
+    {id: '7650195', url: 'YG5gveWwFK8', name: "Hungrybox vs. S2J", gameStarts: [252, 583, 720, 897]},
+    {id: '7713741', url: '8j6-16kWOMU', name: 'Infinite Numbers vs. S2J', gameStarts: [70, 307, 500, 756, 960]},
+    {id: '7650210', url: 'oCl8iU2Q3hI', name: 'Infinite Numbers vs. Westballz', gameStarts: [170, 384, 680, 878, 1067]},
+    {id: '7713751', url: 'U5j2-Wk1ZOE', name: 'Leffen vs. Axe', gameStarts: [31, 252, 435]},
+    {id: '7713753', url: 'mDvEz6r2zMY', name: 'Leffen vs. Hungrybox', gameStarts: [16, 249, 459, 660, 836]},
+    {id: '7650212', url: 'Q1iWee-GstU', name: 'Leffen vs. Infinite Numbers', gameStarts: [202, 453, 687]},
+    {id: '7650213', url: '3fRvGxcXOGg', name: 'Lucky vs. PewPewU', gameStarts: [66,209, 453, 662]},
     {id: '7687300', url: 'Jgi5Jq9isbI', name: 'Mango vs. Axe (Missing Data)', gameStarts: [141, 368, 550, 737, ]},
     {id: '7713740', url: 'EJ0MQTc-SEA', name: 'Mango vs. Hugs (Missing Data)', gameStarts: [68, 367, 741 ]},
-    {id: '7713751', url: 'U5j2-Wk1ZOE', name: 'Leffen vs. Axe', gameStarts: [31, 252, 435]},
+    {id: '7713734', url: 'WS92sI6Ju-k', name: 'Mew2King vs. Axe', gameStarts: [181, 535, 728, 993, 1230]},
+    {id: '7713736', url: 'JnS_WcIMHsk', name: 'Mew2King vs. HungryBox', gameStarts: [76, 273, 594, 869]},
     {id: '7713752', url: 'mTFHQYF1P2M', name: 'Mew2King vs. Leffen', gameStarts: [186, 363, 446, 733]},
-    {id: '7713753', url: 'mDvEz6r2zMY', name: 'Leffen vs. Hungrybox', gameStarts: [16, 249, 459, 660, 836]},
-    {id: '7713738', url: 'WOXO78vw6nI', name: 'Armada vs. Hungrybox', gameStarts: [30, 132, 321, 575]},
+    {id: '7713750', url: 'X1dys1qMPPI', name: 'Mew2King vs. Plup', gameStarts: [62, 263, 472, 738, 913]},
+    {id: '7650196', url: 'Uk_nJAAESEw', name: 'PewPewU vs. Leffen', gameStarts: [53, 240, 382]},
+    {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159]},
+    {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584]},
+    {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700]},
+    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749]},
+    {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866]},
   ];
 
   selectedSet: string = ""
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit{
   doughnutChartLabels: string[] = [this.p1Tag, this.p2Tag]
   doughtnutChartType: string
 
-  barChartLabels: string[] = ['Average Openings to Kill', 'Average Damage Per Opening', ]
+  barChartLabels: string[] = ['Avg. Openings to Kill', 'Avg. Damage Per Opening', ]
   barChartType:string =  'bar'
   barChartLegend:boolean = true;
   barChartData:any[] = [
@@ -117,6 +117,14 @@ export class AppComponent implements OnInit{
     }
   ]
   lineChartOptions:any = {
+    title: {
+      fullWidth: false,
+      display: true,
+      text: "Win Expectancy",
+      position: 'top',
+      fontSize: 18,
+      fontColor: "black"
+    },
     responsive: true,
     scales: {
       yAxes: [{
@@ -131,7 +139,15 @@ export class AppComponent implements OnInit{
           fontSize: 13,
           fontColor: 'black'
         },
-      }]
+      }],
+    xAxes: [{
+      scaleLabel: {
+        labelString: 'Timestamps',
+        display: true,
+        fontSize: 13,
+        fontColor: 'black'
+      },
+    }]
     }
   }
 
@@ -327,6 +343,7 @@ export class AppComponent implements OnInit{
       this.playerTuplesForRegressionWithTimeAndGameId = [];
 
     }
+
     createLineChartData (playerTuplesForRegressionWithTimeAndGameId) {
       var setChartData = []
       for (let i = 0; i < playerTuplesForRegressionWithTimeAndGameId.length; i++) {
@@ -343,6 +360,7 @@ export class AppComponent implements OnInit{
         }
         chartDataAndLabels['data'] = lineChartData
         chartDataAndLabels['labels'] = lineChartLabels
+
         setChartData.push(chartDataAndLabels)
       }
       return setChartData
@@ -377,13 +395,28 @@ export class AppComponent implements OnInit{
             },
             scaleLabel: {
               display: true,
-              labelString: "Player 2   "+ '|' + "   Player 1",
-              fontSize: 18,
+              labelString: this.p1Tag + " chance of winning",
+              fontSize: 13,
               fontColor: 'black'
             },
-          }]
+          }],
+        xAxes: [{
+          scaleLabel: {
+            labelString: 'Timestamps',
+            display: true,
+            fontSize: 10,
+            fontColor: 'black'
+          },
+        }]
         }
       }
+      var colorStrings = ['rgba(0,0,255,1)', 'rgba(255,0,0,1)', 'rgba(0,255,0,1)','rgba(255,215,0,1)', 'rgba(102,51,153, 1)']
+      this.lineChartColors = [
+        {
+          backgroundColor: 'rgba(0,255,0,0)',
+          borderColor: colorStrings[gameIndex],
+        }
+      ]
     }
 
     seekToTime(time, gameId) {
@@ -408,7 +441,11 @@ export class AppComponent implements OnInit{
       // console.log(this.allSets[this.setIndex]['gameStarts'][varIndex])
       window['player'].seekTo(time/60 + this.allSets[this.setIndex]['gameStarts'][varIndex], true)
       window['player'].playVideo();
-      window.scrollTo(0,0);
+      // window.scrollTo(0, 0);
+      // var element = window['document'].getElementById('player')
+      // element.scrollIntoView({behavior: "smooth", block:"start"});
+      window['document'].all['player'].scrollIntoView(true)
+
     }
 
     changeVideo(videoId){
@@ -507,9 +544,13 @@ export class AppComponent implements OnInit{
         this.doughnutChartLabels = [this.p1Tag, this.p2Tag]
         console.log(this.p1Tag, this.p2Tag)
         this.doughtnutChartType = 'doughnut'
+        var p1OpToKill = this.p1Punishes.length / this.p1Kills
+        var p2OpToKill = this.p2Punishes.length / this.p2Kills
+        var p1DmgPerPunish = this.p1Damage / this.p1Punishes.length
+        var p2DmgPerPunish = this.p2Damage / this.p2Punishes.length
         this.barChartData = [
-          {data: [this.p1Punishes.length / this.p1Kills, this.p1Damage / this.p1Punishes.length, this.p1Hits / this.p1Punishes.length], label: this.p1Tag},
-          {data: [this.p2Punishes.length / this.p2Kills, this.p2Damage / this.p2Punishes.length, this.p2Hits / this.p2Punishes.length], label: this.p2Tag},
+          {data: [p1OpToKill.toFixed(4), p1DmgPerPunish.toFixed(4), ], label: this.p1Tag},
+          {data: [p2OpToKill.toFixed(4), p2DmgPerPunish.toFixed(4),], label: this.p2Tag},
         ]
 
         // this.p1combos = [].concat.apply([], this.p1combos); //flattening the array of combo strings!
@@ -545,6 +586,8 @@ export class AppComponent implements OnInit{
 
         console.log('doing the initial update')
         this.updateLineChartData(this.gameIds[0])
+        window['document'].all['player'].scrollIntoView(true)
+
         // console.log('this is the global linechart data', this.globalLineChartData)
         // this.lineChartData[0]['data'] = this.globalLineChartData[0]['data'] //update the array
         // this.lineChartData[0]['label'] = this.globalLineChartData[0]['labels']
