@@ -164,13 +164,13 @@ export class AppComponent implements OnInit{
       var stocksTakenAdvantage = Math.log10(p2Stocks / p1Stocks)
       var percentIntoMatch = 1.0 - (p1Stocks + p2Stocks) / 8.0
       var advantageWeight = -2.734 + 2.638 * percentIntoMatch
-      console.log('****')
-      console.log("p1Stock", p1Stock)
-      console.log("p1Percent", p1Percent)
-      console.log("p2Stock", p2Stock)
-      console.log("p2Percent", p2Percent)
-      console.log(.50 + stocksTakenAdvantage * advantageWeight)
-      console.log('****')
+      // console.log('****')
+      // console.log("p1Stock", p1Stock)
+      // console.log("p1Percent", p1Percent)
+      // console.log("p2Stock", p2Stock)
+      // console.log("p2Percent", p2Percent)
+      // console.log(.50 + stocksTakenAdvantage * advantageWeight)
+      // console.log('****')
       return [gameId, frameStart, Math.min(Math.max(0.50 + stocksTakenAdvantage * advantageWeight, 0.001), 0.999)]
     }
 
@@ -456,7 +456,7 @@ export class AppComponent implements OnInit{
     
 
       for (var gameId in this.setData['games']) {
-        this.allRegressionTuples.push(this.createRegressionPoints(gameId))
+        // this.allRegressionTuples.push(this.createRegressionPoints(gameId))
         this.playerTuplesForRegressionWithTimeAndGameId.push(this.playerStocksAndPercentAtTime(gameId))
         console.log(gameId)
         this.gameIds.push(gameId)
