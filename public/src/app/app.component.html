@@ -4,11 +4,11 @@
     <h1>
       Welcome to {{title}}!!
     </h1>
-    <div id="player" style='width: 1080px; height: 720px;'></div>
+    <div id="player" style='width: 720px; height: 480px;'></div>
     
-    <form (submit)="getSetData()">
-      <div class='form-group' style='float:middle'>
-        <select [(ngModel)]='setIndex' name='selectedSet' class='form-control' style='width: 50%'>
+    <div class='form-group' style='text-align:center'>
+      <form (submit)="getSetData()"  style='text-align:center'>
+        <select [(ngModel)]='setIndex' name='selectedSet' class='form-control' style='width: 720px;'  style='text-align:center'>
           <!-- <option value='default'>  Select a Set!</option> -->
           <option *ngFor='let set of allSets; let i = index;' [value]='i'>{{set.name}}</option>
           
@@ -17,8 +17,8 @@
 
         <!-- <input type='submit' value='Get the set data!'> -->
         <button class='btn btn-default' type='submit'>Get the Set Data!</button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 
 
@@ -26,7 +26,7 @@
 
 
 
-  <div *ngIf='isDataAvailable'>
+<div *ngIf='isDataAvailable'>
     <div class='row'>
       <!-- <div class='col-md-4 col-lg-6'>
         <canvas baseChart
@@ -65,8 +65,8 @@
         <h4 (click)="updateLineChartData(gameIds[2])">Game 3 {{gameIds[2]}}</h4> -->
     </div>
 
-  </div>
-<div *ngIf='isDataAvailable'>
+  
+
   <div class='row'>
     <div class='table-responsive' class='col-md-6'>
       <table class='table table-bordered'>
@@ -148,63 +148,49 @@
       </table>
     </div>
   </div>
-</div>
+
 
 
 
   <div class='row'>
-    <h3>Combo Data with Timestamps</h3>
+    <h3 style='text-align:center'>Combo Data with Timestamps</h3>
     <div class='col-md-6'>
       <h3 style='text-align:center;'>{{p1Tag}}</h3>
       <table class='table table-hover'>
         <tr>
           <th>Game</th>
-          <th>Damage</th>
           <th>Hits</th>
-          <th>Killing Blow?</th>
-          <th>Time (Frames)</th>
-          <th>Combo Begin</th>
-          <th>Combo End</th>
+          <th>Damage Dealt</th>
+          <th>Timestamp</th>
         </tr>
-
-        <tr *ngFor='let punish of p1Punishes'>
-          <td>{{gameIds.indexOf(punish.gameId) + 1}} </td>
-          <td>{{punish.damage | number: '1.2-2'}}</td>
+        <tr *ngFor='let punish of p1Punishes' (click)="seekToTime(punish.frameStart, punish.gameId)" [ngClass]="{'greenTable': punish.isKill}">
+          <td >{{gameIds.indexOf(punish.gameId) + 1}}</td>
           <td>{{punish.hits}}</td>
-          <td>{{punish.isKill}}</td>
-          <td>{{punish.time}}</td>
-          <td><a style='color:blue; text-decoration: underline;' (click)="seekToTime(punish.frameStart, punish.gameId)">{{punish.frameStart}}</a></td>
-          <td>{{punish.frameEnd}}</td>
+          <td>{{punish.damage | number: '1.2-2'}}</td>
+          <td><a style='color:blue; text-decoration: underline;'>{{ punish.frameStart/60 + allSets[setIndex]['gameStarts'][gameIds.indexOf(punish.gameId)] | number: '1.0-0'}}</a></td>
         </tr>
       </table>
     </div>
 
     <div class='col-md-6'>
-      <h3>{{p2Tag}}</h3>
+      <h3 style='text-align:center;'>{{p2Tag}}</h3>
       <table class='table table-hover'>
         <tr>
           <th>Game</th>
-          <th>Damage Dealt</th>
           <th>Hits</th>
-          <th>Killing Blow?</th>
-          <th>Time (Frames)</th>
-          <th>Combo Begin</th>
-          <th>Combo End</th>
+          <th>Damage Dealt</th>
+          <th>Timestamp</th>
         </tr>
-
-        <tr *ngFor='let punish of p2Punishes' >
-          <td>{{gameIds.indexOf(punish.gameId) + 1}}</td>
-          <td>{{punish.damage | number: '1.2-2'}}</td>
+        <tr *ngFor='let punish of p2Punishes' (click)="seekToTime(punish.frameStart, punish.gameId)" [ngClass]="{'greenTable': punish.isKill}">
+          <td >{{gameIds.indexOf(punish.gameId) + 1}}</td>
           <td>{{punish.hits}}</td>
-          <td *ngIf='punish.isKill'>KILLED!!</td>
-          <td *ngIf='!punish.isKill'>DIDNT KILL!!</td>
-          <td>{{punish.time}}</td>
-          <td><a style='color:blue; text-decoration: underline;' (click)="seekToTime(punish.frameStart, punish.gameId)">{{punish.frameStart}}</a></td>
-          <td>{{punish.frameEnd}}</td>
+          <td>{{punish.damage | number: '1.2-2'}}</td>
+          <td><a style='color:blue; text-decoration: underline;'>{{ punish.frameStart/60 + allSets[setIndex]['gameStarts'][gameIds.indexOf(punish.gameId)] | number: '1.0-0'}}</a></td>
         </tr>
       </table>
     </div>
   </div>
+</div>
 
 
 

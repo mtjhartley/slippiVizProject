@@ -408,12 +408,12 @@ export class AppComponent implements OnInit{
         this.playerIds.push(key)
       }
 
-      this.p1sggId = this.playerIds[1]
-      console.log('******** this.playerIds array **********')
-      console.log(this.playerIds)
-      this.p1Tag = this.setData['summary'][this.p1sggId]['gamerTag']
-      this.p2sggId = this.playerIds[0]
-      this.p2Tag = this.setData['summary'][this.p2sggId]['gamerTag']
+      // this.p1sggId = this.playerIds[1]
+      // console.log('******** this.playerIds array **********')
+      // console.log(this.playerIds)
+      // this.p1Tag = this.setData['summary'][this.p1sggId]['gamerTag']
+      // this.p2sggId = this.playerIds[0]
+      // this.p2Tag = this.setData['summary'][this.p2sggId]['gamerTag']
 
     
 
@@ -425,6 +425,11 @@ export class AppComponent implements OnInit{
 
         this.p1combos.push(this.setData['games'][gameId]['players'][0]["comboStrings"]) //for regression
         this.p2combos.push(this.setData['games'][gameId]['players'][1]['comboStrings'])
+        this.playerIds = []
+        this.playerIds.push(this.setData['games'][gameId]['players'][0]['playerId'])
+        this.playerIds.push(this.setData['games'][gameId]['players'][1]['playerId'])
+        this.p1sggId = this.playerIds[0]
+        this.p2sggId = this.playerIds[1]
 
         for (var i = 0; i < this.setData['games'][gameId]['players'].length; i++){ //each players array of punishes in a game
           for (var j = 0; j < this.setData['games'][gameId]['players'][i]['punishes'].length; j++) {
@@ -453,6 +458,10 @@ export class AppComponent implements OnInit{
           }
         }
       }
+        // this.p1sggId = this.playerIds[1]
+        this.p1Tag = this.setData['summary'][this.p1sggId]['gamerTag']
+        // this.p2sggId = this.playerIds[0]
+        this.p2Tag = this.setData['summary'][this.p2sggId]['gamerTag']
         this.doughnutChartData = [this.p1Punishes.length , this.p2Punishes.length ];
         this.doughnutChartLabels = [this.p1Tag, this.p2Tag]
         console.log(this.p1Tag, this.p2Tag)
