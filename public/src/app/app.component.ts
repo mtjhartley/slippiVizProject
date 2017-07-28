@@ -135,7 +135,7 @@ export class AppComponent implements OnInit{
     }
   }
 
-
+  
   ngOnInit() {
     window['onYouTubeIframeAPIReady'].call(null, this.allSets[this.setIndex]['url'])
     this.changeVideo(this.allSets[this.setIndex]['url'])
@@ -412,9 +412,12 @@ export class AppComponent implements OnInit{
     }
 
     changeVideo(videoId){
+      if (window['player']) {
+        console.log('in window["player"]')
       window['player'].loadVideoById(videoId);
       window['player'].playVideo();
       window['player'].seekTo(0, true);
+      }
       // console.log('after changing the video')
       // console.log(window['player'])
     }
