@@ -6,9 +6,9 @@
     </h1>
     <div id="player" style='width: 720px; height: 480px;'></div>
     
-    <div class='form-group' style='text-align:center'>
+    <div class='form-group' style='text-align:center; width: 360px;'>
       <form (submit)="getSetData()"  style='text-align:center'>
-        <select [(ngModel)]='setIndex' name='selectedSet' class='form-control' style='width: 720px;'  style='text-align:center'>
+        <select [(ngModel)]='setIndex' name='selectedSet' class='form-control' style='text-align:center'>
           <!-- <option value='default'>  Select a Set!</option> -->
           <option *ngFor='let set of allSets; let i = index;' [value]='i'>{{set.name}}</option>
           
@@ -37,7 +37,7 @@
           (chartClick)="chartClicked($event)"></canvas>
       </div> -->
 
-      <div class='col-md-6 col-lg-12'>
+      <div class='col-md-12 col-lg-6'>
         <canvas baseChart
                 [datasets]="barChartData"
                 [labels]="barChartLabels"
@@ -48,8 +48,9 @@
                 (chartClick)="chartClicked($event)"></canvas>
       </div>
 
-      <div class='col-md-6 col-lg-12'>
-        <h4>Win Probability</h4>
+      <div class='col-md-12 col-lg-6'>
+        <h4 style='display:inline-block'>Win Probability</h4>
+        <h5 *ngFor='let id of gameIds; let idx = index;' (click)='updateLineChartData(gameIds[idx])' style='display:inline-block; text-align: center;'> | Game {{idx + 1}}&nbsp;</h5>
         <canvas baseChart
           [datasets]="lineChartData"
           [labels]="lineChartLabels"
@@ -57,12 +58,8 @@
           [colors]="lineChartColors"
           [legend]="lineChartLegend"
           [chartType]="lineChartType"></canvas>
+
       </div>
-        <!--Make this an NG for for all of the games in the gameIds array!  -->
-        <h4 *ngFor='let id of gameIds; let idx = index;' (click)='updateLineChartData(gameIds[idx])' style='display:inline-block'>Game {{idx + 1}}</h4>
-        <!-- <h4 (click)="updateLineChartData(gameIds[0])">Game 1 {{gameIds[0]}}</h4>
-        <h4 (click)="updateLineChartData(gameIds[1])">Game 2 {{gameIds[1]}}</h4>
-        <h4 (click)="updateLineChartData(gameIds[2])">Game 3 {{gameIds[2]}}</h4> -->
     </div>
 
   
@@ -86,7 +83,7 @@
           </tr>
           <tr>
             <td>Damage Dealt</td>
-            <td>{{ p1Damage | number:'1.1-2'}}</td>
+            <td >{{ p1Damage | number:'1.1-2'}}</td>
           </tr>
           <tr>
             <td>Total Hits</td>
@@ -118,7 +115,7 @@
         <tbody>
           <tr>
             <td>Openings Needed to Kill</td>
-            <td> {{ p2Punishes.length / p1Kills | number:'1.1-4'}} </td>
+            <td> {{ p2Punishes.length / p2Kills | number:'1.1-4'}} </td>
           </tr>
           <tr>
             <td>Total Neutral Wins</td>
@@ -155,7 +152,7 @@
   <div class='row'>
     <h3 style='text-align:center'>Combo Data with Timestamps</h3>
     <div class='col-md-6'>
-      <h3 style='text-align:center;'>{{p1Tag}}</h3>
+      <h4 style='text-align:center;'>{{p1Tag}}</h4>
       <table class='table table-hover'>
         <tr>
           <th>Game</th>
@@ -166,14 +163,14 @@
         <tr *ngFor='let punish of p1Punishes' (click)="seekToTime(punish.frameStart, punish.gameId)" [ngClass]="{'greenTable': punish.isKill}">
           <td >{{gameIds.indexOf(punish.gameId) + 1}}</td>
           <td>{{punish.hits}}</td>
-          <td>{{punish.damage | number: '1.2-2'}}</td>
+          <td [ngClass]="{'bigCombo': punish.damage > 27}">{{punish.damage | number: '1.2-2'}}</td>
           <td><a style='color:blue; text-decoration: underline;'>{{ punish.frameStart/60 + allSets[setIndex]['gameStarts'][gameIds.indexOf(punish.gameId)] | number: '1.0-0'}}</a></td>
         </tr>
       </table>
     </div>
 
     <div class='col-md-6'>
-      <h3 style='text-align:center;'>{{p2Tag}}</h3>
+      <h4 style='text-align:center;'>{{p2Tag}}</h4>
       <table class='table table-hover'>
         <tr>
           <th>Game</th>
@@ -184,7 +181,7 @@
         <tr *ngFor='let punish of p2Punishes' (click)="seekToTime(punish.frameStart, punish.gameId)" [ngClass]="{'greenTable': punish.isKill}">
           <td >{{gameIds.indexOf(punish.gameId) + 1}}</td>
           <td>{{punish.hits}}</td>
-          <td>{{punish.damage | number: '1.2-2'}}</td>
+          <td [ngClass]="{'bigCombo': punish.damage > 27}">{{punish.damage | number: '1.2-2'}}</td>
           <td><a style='color:blue; text-decoration: underline;'>{{ punish.frameStart/60 + allSets[setIndex]['gameStarts'][gameIds.indexOf(punish.gameId)] | number: '1.0-0'}}</a></td>
         </tr>
       </table>

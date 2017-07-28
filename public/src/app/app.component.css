@@ -1,3 +1,7 @@
 .greenTable {
     background-color: rgba(0, 255, 0, 0.2);
 }
+
+.bigCombo {
+    font-weight: bold;
+}

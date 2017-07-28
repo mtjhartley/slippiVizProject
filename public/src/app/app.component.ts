@@ -37,6 +37,8 @@ export class AppComponent implements OnInit{
     {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159]},
     {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866]},
     {id: '7713750', url: 'X1dys1qMPPI', name: 'Mew2King vs. Plup', gameStarts: [62, 263, 472, 738, 913]},
+    {id: '7687300', url: 'Jgi5Jq9isbI', name: 'Mango vs. Axe (Missing Data)', gameStarts: [141, 368, 550, 737, ]},
+    {id: '7713740', url: 'EJ0MQTc-SEA', name: 'Mango vs. Hugs (Missing Data)', gameStarts: [68, 367, 741 ]},
     {id: '7713751', url: 'U5j2-Wk1ZOE', name: 'Leffen vs. Axe', gameStarts: [31, 252, 435]},
     {id: '7713752', url: 'mTFHQYF1P2M', name: 'Mew2King vs. Leffen', gameStarts: [186, 363, 446, 733]},
     {id: '7713753', url: 'mDvEz6r2zMY', name: 'Leffen vs. Hungrybox', gameStarts: [16, 249, 459, 660, 836]},
@@ -91,6 +93,16 @@ export class AppComponent implements OnInit{
     {data: [this.p1Punishes.length / this.p1Kills, this.p1Damage / this.p1Punishes.length], label: 'Player 1'},
     {data: [this.p2Punishes.length / this.p2Kills, this.p2Damage / this.p2Punishes.length], label: 'Player 2'},
   ]
+  barChartOptions:any = {
+    title: {
+    fullWidth: false,
+    display: true,
+    text: "Impact of Neutral and Punish",
+    position: 'top',
+    fontSize: 18,
+    fontColor: "black"
+  },
+  }
 
   lineChartData: Array<any> = [
     {data: [.5,], label: 'Game 1'}
@@ -110,7 +122,15 @@ export class AppComponent implements OnInit{
       yAxes: [{
         ticks: {
           beginAtZero: true,
-        }
+          min: 0,
+          max: 1
+        },
+        scaleLabel: {
+          display: true,
+          labelString: this.p1sggId + '|' + this.p2sggId,
+          fontSize: 13,
+          fontColor: 'black'
+        },
       }]
     }
   }
@@ -346,6 +366,24 @@ export class AppComponent implements OnInit{
       this.lineChartType = 'line'
       // this.lineChartData = this.lineChartData.slice();
       console.log('this is the linechart data now, after clicking', this.lineChartData)
+      this.lineChartOptions = {
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true,
+              min: 0,
+              max: 1
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "Player 2   "+ '|' + "   Player 1",
+              fontSize: 18,
+              fontColor: 'black'
+            },
+          }]
+        }
+      }
     }
 
     seekToTime(time, gameId) {
