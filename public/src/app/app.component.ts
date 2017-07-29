@@ -15,40 +15,45 @@ export class AppComponent implements OnInit{
   stockData: object = {};
 
   allSets: Array<object> = [
-    {id: '7713738', url: 'WOXO78vw6nI', name: 'Armada vs. Hungrybox', gameStarts: [30, 132, 321, 575]},
-    {id: '7650193', url: 'vQ7c73TBOSA', name: 'Armada vs. Infinite Numbers', gameStarts: [39, 389, 627]},
-    {id: '7713735', url: 'zbGv0_5vPdc', name: 'Armada vs. Leffen', gameStarts: [136, 365, 493]},
-    {id: '7650197', url: 'jGdihA8pX0w', name: 'Armada vs. Lucky', gameStarts: [91, 322, 554]},
-    {id: '7713747', url: 'TGyr6wjeFs4', name: 'Axe vs. Ice', gameStarts: [90, 254, 461, 603, 758]},
-    {id: '7687299', url: 'W5iQFzaD99w', name: 'ChuDat vs. SFAT', gameStarts: [152, 450, 685, 890]},
-    {id: '7687298', url: 'ps0rsWiesx8', name: 'HugS vs. Axe', gameStarts: [94, 487, 736, 1023, 1287]},
-    {id: '7650198', url: 'dnDll8B1r5c', name: 'Hungrybox vs. Leffen', gameStarts: [71, 231, 463, 757]},
-    {id: '7713733', url: '0GivvbOhqQg', name: 'Hungrybox vs. PewPewU', gameStarts: [58, 283, 558, 899]},
-    {id: '7650195', url: 'YG5gveWwFK8', name: "Hungrybox vs. S2J", gameStarts: [252, 583, 720, 897]},
-    {id: '7713741', url: '8j6-16kWOMU', name: 'Infinite Numbers vs. S2J', gameStarts: [70, 307, 500, 756, 960]},
-    {id: '7650210', url: 'oCl8iU2Q3hI', name: 'Infinite Numbers vs. Westballz', gameStarts: [170, 384, 680, 878, 1067]},
-    {id: '7713751', url: 'U5j2-Wk1ZOE', name: 'Leffen vs. Axe', gameStarts: [31, 252, 435]},
-    {id: '7713753', url: 'mDvEz6r2zMY', name: 'Leffen vs. Hungrybox', gameStarts: [16, 249, 459, 660, 836]},
-    {id: '7650212', url: 'Q1iWee-GstU', name: 'Leffen vs. Infinite Numbers', gameStarts: [202, 453, 687]},
-    {id: '7650213', url: '3fRvGxcXOGg', name: 'Lucky vs. PewPewU', gameStarts: [66,209, 453, 662]},
-    {id: '7687300', url: 'Jgi5Jq9isbI', name: 'Mango vs. Axe (Missing Data)', gameStarts: [141, 368, 550, 737, ]},
-    {id: '7713740', url: 'EJ0MQTc-SEA', name: 'Mango vs. Hugs (Missing Data)', gameStarts: [68, 367, 741 ]},
-    {id: '7713734', url: 'WS92sI6Ju-k', name: 'Mew2King vs. Axe', gameStarts: [181, 535, 728, 993, 1230]},
-    {id: '7713736', url: 'JnS_WcIMHsk', name: 'Mew2King vs. HungryBox', gameStarts: [76, 273, 594, 869]},
-    {id: '7713752', url: 'mTFHQYF1P2M', name: 'Mew2King vs. Leffen', gameStarts: [186, 363, 446, 733]},
-    {id: '7713750', url: 'X1dys1qMPPI', name: 'Mew2King vs. Plup', gameStarts: [62, 263, 472, 738, 913]},
-    {id: '7650196', url: 'Uk_nJAAESEw', name: 'PewPewU vs. Leffen', gameStarts: [53, 240, 382]},
-    {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159]},
-    {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584]},
-    {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700]},
-    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749]},
-    {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866]},
+    {id: '7713738', url: 'WOXO78vw6nI', name: 'Armada vs. Hungrybox', gameStarts: [30, 132, 321, 575], winner: 'Armada', loser: 'Hungrybox', score: '3-1'},
+    {id: '7650193', url: 'vQ7c73TBOSA', name: 'Armada vs. Infinite Numbers', gameStarts: [39, 389, 627], winner: 'Armada', loser: 'Infinite Numbers', score: '3-0'},
+    {id: '7713735', url: 'zbGv0_5vPdc', name: 'Armada vs. Leffen', gameStarts: [136, 365, 493], winner: 'Armada', loser: 'Leffen', score: '3-0'},
+    {id: '7650197', url: 'jGdihA8pX0w', name: 'Armada vs. Lucky', gameStarts: [91, 322, 554], winner: 'Armada', loser: 'Lucky', score: '3-0'},
+    {id: '7713747', url: 'TGyr6wjeFs4', name: 'Axe vs. Ice', gameStarts: [90, 254, 461, 603, 758], winner: 'Axe', loser: 'Ice', score: '3-2'},
+    {id: '7687299', url: 'W5iQFzaD99w', name: 'ChuDat vs. SFAT', gameStarts: [152, 450, 685, 890], winner: 'ChuDat', loser: 'SFAT', score: '3-1'},
+    {id: '7687298', url: 'ps0rsWiesx8', name: 'HugS vs. Axe', gameStarts: [94, 487, 736, 1023, 1287], winner: 'Axe', loser: 'HugS', score: '3-2'},
+    {id: '7650198', url: 'dnDll8B1r5c', name: 'Hungrybox vs. Leffen', gameStarts: [71, 231, 463, 757], winner: 'Hungrybox', loser: 'Leffen', score: '3-1'},
+    {id: '7713733', url: '0GivvbOhqQg', name: 'Hungrybox vs. PewPewU', gameStarts: [58, 283, 558, 899], winner: 'Hungrybox', loser: 'PewPewU', score: '3-1'},
+    {id: '7650195', url: 'YG5gveWwFK8', name: "Hungrybox vs. S2J", gameStarts: [252, 583, 720, 897], winner: 'Hungrybox', loser: 'S2J', score: '3-1'},
+    {id: '7713741', url: '8j6-16kWOMU', name: 'Infinite Numbers vs. S2J', gameStarts: [70, 307, 500, 756, 960], winner: 'S2J', loser: 'Infinite Numbers', score: '3-2'},
+    {id: '7650210', url: 'oCl8iU2Q3hI', name: 'Infinite Numbers vs. Westballz', gameStarts: [170, 384, 680, 878, 1067], winner: 'Infinite Numbers', loser: 'Westballz', score: '3-2'},
+    {id: '7713751', url: 'U5j2-Wk1ZOE', name: 'Leffen vs. Axe', gameStarts: [31, 252, 435], winner: 'Leffen', loser: 'Axe', score: '3-0'},
+    {id: '7713753', url: 'mDvEz6r2zMY', name: 'Leffen vs. Hungrybox', gameStarts: [16, 249, 459, 660, 836], winner: 'Hungrybox', loser: 'Leffen', score: '3-2'},
+    {id: '7650212', url: 'Q1iWee-GstU', name: 'Leffen vs. Infinite Numbers', gameStarts: [202, 453, 687], winner: 'Leffen', loser: 'Infinite Numbers', score: '3-0'},
+    {id: '7650213', url: '3fRvGxcXOGg', name: 'Lucky vs. PewPewU', gameStarts: [66,209, 453, 662], winner: 'PewPewU', loser: 'Lucky', score: '3-1'},
+    {id: '7687300', url: 'Jgi5Jq9isbI', name: 'Mango vs. Axe (Missing Data)', gameStarts: [141, 368, 550, 737, ], winner: 'Axe', loser: 'Mango', score: '3-1'},
+    {id: '7713740', url: 'EJ0MQTc-SEA', name: 'Mango vs. HugS (Missing Data)', gameStarts: [68, 367, 741 ], winner: 'Mango', loser: 'HugS', score: '3-0'},
+    {id: '7713734', url: 'WS92sI6Ju-k', name: 'Mew2King vs. Axe', gameStarts: [181, 535, 728, 993, 1230], winner: 'Mew2King', loser: 'Axe', score: '3-2'},
+    {id: '7713736', url: 'JnS_WcIMHsk', name: 'Mew2King vs. HungryBox', gameStarts: [76, 273, 594, 869], winner: 'Hungrybox', loser: 'Mew2King', score: '3-1'},
+    {id: '7713752', url: 'mTFHQYF1P2M', name: 'Mew2King vs. Leffen', gameStarts: [186, 363, 446, 733], winner: 'Leffen', loser: 'Mew2King', score: '3-1'},
+    {id: '7713750', url: 'X1dys1qMPPI', name: 'Mew2King vs. Plup', gameStarts: [62, 263, 472, 738, 913], winner: 'Mew2King', loser: 'Plup', score: '3-2'},
+    {id: '7650196', url: 'Uk_nJAAESEw', name: 'PewPewU vs. Leffen', gameStarts: [53, 240, 382], winner: 'Leffen', loser: 'PewPewU', score: '3-0'},
+    {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159], winner: 'Plup', loser: 'ChuDat', score: '3-1'},
+    {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584], winner: 'Plup', loser: 'S2J', score: '3-0'},
+    {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700], winner: 'PewPewU', loser: 'S2J', score: '3-1'},
+    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749], winner: 'SFAT', loser: 'Westballz', score: '3-1'},
+    {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866], winner: 'Axe', loser: 'SFAT', score: '3-2'},
   ];
 
   selectedSet: string = ""
   isDataAvailable = false;
   gameIds = [];
   playerIds = [];
+
+  winner;
+  loser;
+  score;
+
 
   p1sggId;
   p1Tag;
@@ -86,22 +91,57 @@ export class AppComponent implements OnInit{
   doughnutChartLabels: string[] = [this.p1Tag, this.p2Tag]
   doughtnutChartType: string
 
-  barChartLabels: string[] = ['Avg. Openings to Kill', 'Avg. Damage Per Opening', ]
+  barChartLabels: string[] = ['Avg. Openings to Kill', ]
   barChartType:string =  'bar'
   barChartLegend:boolean = true;
   barChartData:any[] = [
-    {data: [this.p1Punishes.length / this.p1Kills, this.p1Damage / this.p1Punishes.length], label: 'Player 1'},
-    {data: [this.p2Punishes.length / this.p2Kills, this.p2Damage / this.p2Punishes.length], label: 'Player 2'},
+    {label: 'Player 1'},
+    {label: 'Player 2'},
+
   ]
   barChartOptions:any = {
     title: {
     fullWidth: false,
     display: true,
-    text: "Impact of Neutral and Punish",
+    text: "Neutral Advantage",
     position: 'top',
-    fontSize: 18,
+    fontSize: 16,
     fontColor: "black"
   },
+  scales: {
+      yAxes: [{
+        ticks: {
+          min: 3,
+          max: 11
+        },
+      }]
+    }
+  }
+  barChartLabels2: string[] = ['Avg. Damage Per Opening', ]
+  barChartType2:string =  'bar'
+  barChartLegend2:boolean = true;
+  barChartData2:any[] = [
+    {label: 'Player 1'},
+    {label: 'Player 2'},
+  ]
+  barChartOptions2:any = {
+    title: {
+    fullWidth: false,
+    display: true,
+    text: "Punish Advantage",
+    position: 'top',
+    fontSize: 16,
+    fontColor: "black"
+  },
+    scales: {
+      yAxes: [{
+        ticks: {
+          min: 8,
+          max: 30
+        },
+      }]
+    }
+
   }
 
   lineChartData: Array<any> = [
@@ -546,11 +586,16 @@ export class AppComponent implements OnInit{
         this.doughtnutChartType = 'doughnut'
         var p1OpToKill = this.p1Punishes.length / this.p1Kills
         var p2OpToKill = this.p2Punishes.length / this.p2Kills
+
         var p1DmgPerPunish = this.p1Damage / this.p1Punishes.length
         var p2DmgPerPunish = this.p2Damage / this.p2Punishes.length
         this.barChartData = [
-          {data: [p1OpToKill.toFixed(4), p1DmgPerPunish.toFixed(4), ], label: this.p1Tag},
-          {data: [p2OpToKill.toFixed(4), p2DmgPerPunish.toFixed(4),], label: this.p2Tag},
+          {data: [p1OpToKill.toFixed(4)], label: this.p1Tag},
+          {data: [p2OpToKill.toFixed(4)], label: this.p2Tag},
+        ]
+        this.barChartData2 = [
+          {data: [p1DmgPerPunish.toFixed(4)], label: this.p1Tag},
+          {data: [p2DmgPerPunish.toFixed(4)], label: this.p2Tag},
         ]
 
         // this.p1combos = [].concat.apply([], this.p1combos); //flattening the array of combo strings!
@@ -587,6 +632,10 @@ export class AppComponent implements OnInit{
         console.log('doing the initial update')
         this.updateLineChartData(this.gameIds[0])
         window['document'].all['player'].scrollIntoView(true)
+
+        this.winner = this.allSets[this.setIndex]['winner']
+        this.loser = this.allSets[this.setIndex]['loser']
+        this.score = this.allSets[this.setIndex]['score']
 
         // console.log('this is the global linechart data', this.globalLineChartData)
         // this.lineChartData[0]['data'] = this.globalLineChartData[0]['data'] //update the array

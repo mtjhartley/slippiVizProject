@@ -4,33 +4,34 @@
 </header>
 
 <div class='container'>
-<p style='max-width: 60%; text-align: center;'>Welcome to StatsGG, a data visualization project created by <a href='https://github.com/mtjhartley'>Michael Hartley</a> using the <a href="https://www.reddit.com/r/smashbros/comments/5xeo4f/slippi_stats_for_the_people_summit_edition/">SmashGG API</a>.
-  This data was taken from <a href="https://smash.gg/tournament/smash-summit-spring-2017/events">Smash Summit Spring 2017</a>, a tournament hosted by Beyond the Summit.
-Analysis was done on the data to find values that are (hopefully) interesting.
-The tables are interactive; clicking a row send that video to the punish!
-Enjoy!</p>
-  <div class='row'>
-    <div class='col-md-7'>
-      <!-- <h1>
-        Welcome to {{title}}!!
-      </h1> -->
-      <div id="player" style='max-width: 100%; height: 480px;'></div>
-    
-      <div class='form-group col-md-4 col-md-offset-4'>
-        <form (submit)="getSetData()"  style='text-align:center'>
-          <select [(ngModel)]='setIndex' name='selectedSet' class='form-control' style='text-align:center'>
-            <!-- <option value='default'>  Select a Set!</option> -->
-            <option style='padding-left: 45%;' *ngFor='let set of allSets; let i = index;' [value]='i'>{{set.name}}</option>
-            
-          </select>
-          <!-- <input type="text" name="setId" [(ngModel)]="setId" value="7650196"> -->
+  <p style='max-width: 60%; text-align: center;'>Welcome to StatsGG, a data visualization project created by <a href='https://github.com/mtjhartley'>Michael Hartley</a> using the <a href="https://www.reddit.com/r/smashbros/comments/5xeo4f/slippi_stats_for_the_people_summit_edition/">smash.gg API</a>.
+    This data was taken from <a href="https://smash.gg/tournament/smash-summit-spring-2017/events">Smash Summit Spring 2017</a>, a tournament hosted by Beyond the Summit.
+  Analysis was done on the data to find values that are (hopefully) interesting.
+  The tables are interactive; clicking a row send that video to the punish!
+  Enjoy!</p>
+    <div class='row'>
+      <div class='col-md-7'>
+        <!-- <h1>
+          Welcome to {{title}}!!
+        </h1> -->
+        <div id="player" style='max-width: 100%; height: 480px;'></div>
+      
+        <div class='form-group col-md-4 col-md-offset-4'>
+          <form (submit)="getSetData()"  style='text-align:center'>
+            <select [(ngModel)]='setIndex' name='selectedSet' class='form-control' style='text-align:center'>
+              <!-- <option value='default'>  Select a Set!</option> -->
+              <option style='padding-left: 45%;' *ngFor='let set of allSets; let i = index;' [value]='i'>{{set.name}}</option>
+              
+            </select>
+            <!-- <input type="text" name="setId" [(ngModel)]="setId" value="7650196"> -->
 
-          <!-- <input type='submit' value='Get the set data!'> -->
-        <button class='btn btn-default' type='submit'>Click me to get started!</button>
-        </form>
+            <!-- <input type='submit' value='Get the set data!'> -->
+          <button class='btn btn-default' type='submit'>Click me to get started!</button>
+          </form>
 
+        </div>
       </div>
-    </div>
+
 
 
 
@@ -46,33 +47,50 @@ Enjoy!</p>
             (chartClick)="chartClicked($event)"></canvas>
         </div> -->
         <div *ngIf='isDataAvailable'>
-          <div class='col-md-12 col-lg-12'>
-            <canvas baseChart
-                    [datasets]="barChartData"
-                    [labels]="barChartLabels"
-                    [options]="barChartOptions"
-                    [legend]="barChartLegend"
-                    [chartType]="barChartType"
-                    (chartHover)="chartHovered($event)"
-                    (chartClick)="chartClicked($event)"></canvas>
+          <div class='row'>
+            <h4 class='col-md-12' style='text-align:center;'>W: {{winner}} {{score}} L: {{loser}}</h4>
           </div>
+          <div class='row'>
+            <div class='col-md-12 col-lg-12'>
+              <canvas baseChart
+                      [datasets]="barChartData"
+                      [labels]="barChartLabels"
+                      [options]="barChartOptions"
+                      [legend]="barChartLegend"
+                      [chartType]="barChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+            </div>
+             <div class='col-md-12 col-lg-12'>
+              <canvas baseChart
+                      [datasets]="barChartData2"
+                      [labels]="barChartLabels2"
+                      [options]="barChartOptions2"
+                      [legend]="barChartLegend2"
+                      [chartType]="barChartType2"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)"></canvas>
+             </div>
+            </div>
+         
 
-          <div class='col-md-12 col-lg-12' style='margin-top: 10px'>
-            <h4 style='display:inline-block'>Win Probability</h4>
-            <canvas baseChart
-              id="regression_chart"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"></canvas>
-          
-            <div style='text-align:center'><h5 *ngFor='let id of gameIds; let idx = index;' (click)='updateLineChartData(gameIds[idx])' style='display: inline-block;'><span style="cursor: pointer; color: #337ab7; display: inline-block;">Game {{idx + 1}}&nbsp;</span></h5></div>
+            <div class='col-md-12 col-lg-12' style='margin-top: 10px'>
+              <h4 style='display:inline-block'>Win Probability</h4>
+              <canvas baseChart
+                id="regression_chart"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType"></canvas>
+            
+              <div style='text-align:center'><h5 *ngFor='let id of gameIds; let idx = index;' (click)='updateLineChartData(gameIds[idx])' style='display: inline-block;'><span style="cursor: pointer; color: #337ab7; display: inline-block;">Game {{idx + 1}}&nbsp;</span></h5></div>
+            </div>
           </div>
         </div>
       </div>
-  </div>
+
 
 
 <div *ngIf='isDataAvailable'>
