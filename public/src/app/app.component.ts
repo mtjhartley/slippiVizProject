@@ -42,7 +42,7 @@ export class AppComponent implements OnInit{
     {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584], winner: 'Plup', loser: 'S2J', score: '3-0'},
     {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700], winner: 'PewPewU', loser: 'S2J', score: '3-1'},
     {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866], winner: 'Axe', loser: 'SFAT', score: '3-2'},
-    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749], winner: 'SFAT', loser: 'Westballz', score: '3-1'},
+    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz (Missing Data)', gameStarts: [131, 379, 504, 749], winner: 'SFAT', loser: 'Westballz', score: '3-1'},
   ];
 
   selectedSet: string = ""
@@ -398,6 +398,7 @@ export class AppComponent implements OnInit{
           console.log('the game start is', gameStart)
           lineChartLabels.push(Math.floor(gameStart + gameWinProbabilities[j][1]/60))
         }
+        // **** push either a 0 or a 1 and like 5 frames past the last frame entered to show the winner or loser
         chartDataAndLabels['data'] = lineChartData
         chartDataAndLabels['labels'] = lineChartLabels
 
