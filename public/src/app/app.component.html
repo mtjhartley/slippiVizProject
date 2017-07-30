@@ -97,47 +97,56 @@
 
   <div class='row'>
     <h3 style='text-align:center'>Player Highlights</h3>
-    <div class='table-responsive' class='col-md-6'>
+    <div class='table-responsive' class='col-md-12'>
       <table class='table table-bordered'>
         <thead>
           <tr>
-            <th colspan='2'>{{p1Tag}} Stats</th>
+            <th></th>
+            <th>{{p1Tag}}</th>
+            <th>{{p2Tag}}</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>Openings Needed to Kill</td>
-            <td> {{ p1Punishes.length / p1Kills | number:'1.1-4'}} </td>
+            <td [ngClass]="{'betterStat': p1Punishes.length/p1Kills < p2Punishes.length/p2Kills,'worseStat': p1Punishes.length/p1Kills  > p2Punishes.length/p2Kills}">  {{ p1Punishes.length / p1Kills | number:'1.1-4'}} </td>
+            <td [ngClass]="{'betterStat': p1Punishes.length/p1Kills > p2Punishes.length/p2Kills, 'worseStat': p1Punishes.length/p1Kills < p2Punishes.length/p2Kills}"> {{ p2Punishes.length / p2Kills | number:'1.1-4'}} </td>
           </tr>
           <tr>
             <td>Total Neutral Wins</td>
-            <td>{{ p1Punishes.length}}</td>
+            <td [ngClass]="{'betterStat': p1Punishes.length > p2Punishes.length,'worseStat': p1Punishes.length < p2Punishes.length}">{{ p1Punishes.length }}</td>
+            <td [ngClass]="{'betterStat': p1Punishes.length < p2Punishes.length,'worseStat': p1Punishes.length > p2Punishes.length}">{{ p2Punishes.length }}</td>
           </tr>
           <tr>
             <td>Damage Dealt</td>
-            <td >{{ p1Damage | number:'1.1-2'}}</td>
+            <td [ngClass]="{'betterStat': p1Damage > p2Damage,'worseStat': p1Damage < p2Damage}">{{ p1Damage | number:'1.1-2'}}</td>
+            <td [ngClass]="{'betterStat': p1Damage < p2Damage,'worseStat': p1Damage > p2Damage}">{{ p2Damage | number:'1.1-2'}}</td>
           </tr>
           <tr>
             <td>Total Hits</td>
-            <td>{{ p1Hits }}</td>
+            <td [ngClass]="{'betterStat': p1Hits > p2Hits,'worseStat': p1Hits < p2Hits}">{{ p1Hits }}</td>
+            <td [ngClass]="{'betterStat': p1Hits < p2Hits,'worseStat': p1Hits > p2Hits}">{{ p2Hits }}</td>
           </tr>
           <tr>
             <td>Average Hits Per Combo</td>
-            <td>{{ p1Hits / p1Punishes.length | number:'1.1-2'}}</td>
+            <td [ngClass]="{'betterStat': p1Hits/p1Punishes.length > p2Hits/p2Punishes.length,'worseStat': p1Hits/p1Punishes.length < p2Hits/p2Punishes.length}">{{ p1Hits / p1Punishes.length | number:'1.1-2'}}</td>
+            <td [ngClass]="{'betterStat': p1Hits/p1Punishes.length < p2Hits/p2Punishes.length,'worseStat': p1Hits/p1Punishes.length > p2Hits/p2Punishes.length}">{{ p2Hits / p2Punishes.length | number:'1.1-2'}}</td>
           </tr>
           <tr>
             <td>Average Punish Length (Seconds)</td>
-            <td>{{ p1Frames / p1Punishes.length / 60 | number:'1.1-2'}}</td>
+            <td [ngClass]="{'betterStat': p1Frames/p1Punishes.length > p2Frames/p2Punishes.length,'worseStat': p1Frames/p1Punishes.length < p2Frames/p2Punishes.length}">{{ p1Frames / p1Punishes.length / 60 | number:'1.1-2'}}</td>
+            <td [ngClass]="{'betterStat': p1Frames/p1Punishes.length < p2Frames/p2Punishes.length,'worseStat': p1Frames/p1Punishes.length > p2Frames/p2Punishes.length}">{{ p2Frames / p2Punishes.length / 60 | number:'1.1-2'}}</td>
           </tr>
           <tr>
             <td>Highest Damage Punish</td>
             <td><span style="cursor: pointer; color: #337ab7; display: inline-block;" (click)="seekToTime(p1MaxPunish.frameStart, p1MaxPunish.gameId)">{{ p1MaxPunish.damage | number: '1.2-2'}}</span></td>
+            <td><span style="cursor: pointer; color: #337ab7; display: inline-block;" (click)="seekToTime(p1MaxPunish.frameStart, p2MaxPunish.gameId)">{{ p2MaxPunish.damage | number: '1.2-2'}}</span></td>
           </tr>
         </tbody>
       </table>
     </div>
 
-    <div class='table-responsive' class='col-md-6'>
+    <!-- <div class='table-responsive' class='col-md-6'>
       <table class='table table-bordered'>
         <thead>
           <tr>
@@ -175,14 +184,14 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </div> -->
   </div>
 
 
 
 
   <div class='row'>
-    <h3 style='text-align:center'>Combo Data with Timestamps</h3>
+    <h3 style='text-align:center'>Timestamped Punish Data</h3>
     <div class='col-md-6'>
       <h4 style='text-align:center;'>{{p1Tag}}</h4>
       <table class='table table-hover'>

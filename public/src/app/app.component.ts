@@ -41,8 +41,8 @@ export class AppComponent implements OnInit{
     {id: '7713748', url: 'QxEqcHUOK3Q', name: 'Plup vs. ChuDat', gameStarts: [65, 445, 783, 1159], winner: 'Plup', loser: 'ChuDat', score: '3-1'},
     {id: '7713745', url: '4dHMBc7f_fY', name: 'Plup vs. S2J', gameStarts: [138, 340, 584], winner: 'Plup', loser: 'S2J', score: '3-0'},
     {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700], winner: 'PewPewU', loser: 'S2J', score: '3-1'},
-    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749], winner: 'SFAT', loser: 'Westballz', score: '3-1'},
     {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866], winner: 'Axe', loser: 'SFAT', score: '3-2'},
+    {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz', gameStarts: [131, 379, 504, 749], winner: 'SFAT', loser: 'Westballz', score: '3-1'},
   ];
 
   selectedSet: string = ""
@@ -111,8 +111,8 @@ export class AppComponent implements OnInit{
   scales: {
       yAxes: [{
         ticks: {
-          min: 3,
-          max: 11
+          suggestedMin: 3,
+          suggestedMax: 10
         },
       }]
     }
@@ -136,8 +136,8 @@ export class AppComponent implements OnInit{
     scales: {
       yAxes: [{
         ticks: {
-          min: 8,
-          max: 30
+          suggestedMin: 10,
+          suggestedMax: 25
         },
       }]
     }
@@ -584,6 +584,8 @@ export class AppComponent implements OnInit{
         this.doughnutChartLabels = [this.p1Tag, this.p2Tag]
         console.log(this.p1Tag, this.p2Tag)
         this.doughtnutChartType = 'doughnut'
+
+        //update barchart data
         var p1OpToKill = this.p1Punishes.length / this.p1Kills
         var p2OpToKill = this.p2Punishes.length / this.p2Kills
 

@@ -6,6 +6,17 @@
     font-weight: bold;
 }
 
+.betterStat {
+     font-weight: bold; 
+    color: green;
+}
+
+.worseStat {
+     font-weight: bold; 
+    color: red;
+}
+
+
 header {
     background: url("../assets/smashsummit.png") no-repeat center;
     background-size: 100% 100%;
