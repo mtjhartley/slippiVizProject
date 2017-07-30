@@ -108,12 +108,17 @@
         </thead>
         <tbody>
           <tr>
-            <td>Openings Needed to Kill</td>
+            <td>Average Openings Needed to Kill</td>
             <td [ngClass]="{'betterStat': p1Punishes.length/p1Kills < p2Punishes.length/p2Kills,'worseStat': p1Punishes.length/p1Kills  > p2Punishes.length/p2Kills}">  {{ p1Punishes.length / p1Kills | number:'1.1-4'}} </td>
             <td [ngClass]="{'betterStat': p1Punishes.length/p1Kills > p2Punishes.length/p2Kills, 'worseStat': p1Punishes.length/p1Kills < p2Punishes.length/p2Kills}"> {{ p2Punishes.length / p2Kills | number:'1.1-4'}} </td>
           </tr>
           <tr>
-            <td>Total Neutral Wins</td>
+            <td>Average Damage Per Opening</td>
+            <td [ngClass]="{'betterStat': p1Damage/p1Punishes.length > p2Damage/p2Punishes.length,'worseStat': p1Damage/p1Punishes.length < p2Damage/p2Punishes.length}">{{ p1Damage/p1Punishes.length | number:'1.1-4'}}</td>
+            <td [ngClass]="{'betterStat': p1Damage/p1Punishes.length < p2Damage/p2Punishes.length,'worseStat': p1Damage/p1Punishes.length > p2Damage/p2Punishes.length}">{{ p2Damage/p2Punishes.length | number:'1.1-4'}}</td>
+          </tr>
+          <tr>
+            <td>Neutral Wins</td>
             <td [ngClass]="{'betterStat': p1Punishes.length > p2Punishes.length,'worseStat': p1Punishes.length < p2Punishes.length}">{{ p1Punishes.length }}</td>
             <td [ngClass]="{'betterStat': p1Punishes.length < p2Punishes.length,'worseStat': p1Punishes.length > p2Punishes.length}">{{ p2Punishes.length }}</td>
           </tr>
@@ -123,12 +128,12 @@
             <td [ngClass]="{'betterStat': p1Damage < p2Damage,'worseStat': p1Damage > p2Damage}">{{ p2Damage | number:'1.1-2'}}</td>
           </tr>
           <tr>
-            <td>Total Hits</td>
+            <td>Hits</td>
             <td [ngClass]="{'betterStat': p1Hits > p2Hits,'worseStat': p1Hits < p2Hits}">{{ p1Hits }}</td>
             <td [ngClass]="{'betterStat': p1Hits < p2Hits,'worseStat': p1Hits > p2Hits}">{{ p2Hits }}</td>
           </tr>
           <tr>
-            <td>Average Hits Per Combo</td>
+            <td>Average Hits Per Punish</td>
             <td [ngClass]="{'betterStat': p1Hits/p1Punishes.length > p2Hits/p2Punishes.length,'worseStat': p1Hits/p1Punishes.length < p2Hits/p2Punishes.length}">{{ p1Hits / p1Punishes.length | number:'1.1-2'}}</td>
             <td [ngClass]="{'betterStat': p1Hits/p1Punishes.length < p2Hits/p2Punishes.length,'worseStat': p1Hits/p1Punishes.length > p2Hits/p2Punishes.length}">{{ p2Hits / p2Punishes.length | number:'1.1-2'}}</td>
           </tr>
