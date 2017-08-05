@@ -256,7 +256,7 @@ export class AppComponent implements OnInit{
         winProbabilities.push(this.win_probability(arrayOfPlayerStocksAndPercentAtAtime[i][0],arrayOfPlayerStocksAndPercentAtAtime[i][1],arrayOfPlayerStocksAndPercentAtAtime[i][2],arrayOfPlayerStocksAndPercentAtAtime[i][3],arrayOfPlayerStocksAndPercentAtAtime[i][4],arrayOfPlayerStocksAndPercentAtAtime[i][5]))
  
       }
-      console.log("winProbabilitiles", winProbabilities)
+      // console.log("winProbabilitiles", winProbabilities)
       return winProbabilities
     }
 
