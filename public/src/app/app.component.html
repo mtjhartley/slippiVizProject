@@ -58,8 +58,7 @@
                       [options]="barChartOptions"
                       [legend]="barChartLegend"
                       [chartType]="barChartType"
-                      (chartHover)="chartHovered($event)"
-                      (chartClick)="chartClicked($event)"></canvas>
+                      (chartHover)="chartHovered($event)"></canvas>
             </div>
              <div class='col-md-12 col-lg-12'>
               <canvas baseChart
@@ -68,8 +67,7 @@
                       [options]="barChartOptions2"
                       [legend]="barChartLegend2"
                       [chartType]="barChartType2"
-                      (chartHover)="chartHovered($event)"
-                      (chartClick)="chartClicked($event)"></canvas>
+                      (chartHover)="chartHovered($event)"></canvas>
              </div>
             </div>
          
@@ -83,7 +81,8 @@
                 [options]="lineChartOptions"
                 [colors]="lineChartColors"
                 [legend]="lineChartLegend"
-                [chartType]="lineChartType"></canvas>
+                [chartType]="lineChartType"
+                (chartClick)="chartClicked($event)"></canvas>
             
               <div style='text-align:center'><h5 *ngFor='let id of gameIds; let idx = index;' (click)='updateLineChartData(gameIds[idx])' style='display: inline-block;'><span style="cursor: pointer; color: #337ab7; display: inline-block;">Game {{idx + 1}}&nbsp;</span></h5></div>
             </div>

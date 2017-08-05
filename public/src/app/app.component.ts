@@ -190,6 +190,23 @@ export class AppComponent implements OnInit{
     }]
     }
   }
+  chartClicked(e:any):void {
+    // console.log(e);
+    // console.log(e['active'][0]['_index']);
+    var index = e['active'][0]['_index']
+    var timestamps = e['active'][0]['_xScale']['ticks']
+    window['player'].seekTo(timestamps[index])
+    window['document'].all['player'].scrollIntoView(true)
+
+    // for (var key in e['active'])
+    //   {
+    //     console.log(key);
+    //   }
+    // console.log(e['active'][0]['_xScale']['ticks'])
+
+  }
+
+
 
   
   ngOnInit() {
@@ -231,8 +248,8 @@ export class AppComponent implements OnInit{
     }
 
     createWinProbabilityForAGame(arrayOfPlayerStocksAndPercentAtAtime){
-      console.log('creating the win probability for 1 game')
-      console.log("this is the array im passing in", arrayOfPlayerStocksAndPercentAtAtime)
+      // console.log('creating the win probability for 1 game')
+      // console.log("this is the array im passing in", arrayOfPlayerStocksAndPercentAtAtime)
       var winProbabilities = []
       for (var i = 0; i < arrayOfPlayerStocksAndPercentAtAtime.length; i++) {
 
@@ -269,7 +286,7 @@ export class AppComponent implements OnInit{
           // console.log(p1id)
           if ((descendingFrameStart[i].percentStart < p2percent)) {
             p2stocks -= 1
-            console.log('decrementing the player2 stock')
+            // console.log('decrementing the player2 stock')
           }
           // if (((descendingFrameStart[i].percentStart < p2percent) || descendingFrameStart[i].percentStart == 0) && p2firstStock) {
           //   p2firstStock = false;
@@ -280,7 +297,7 @@ export class AppComponent implements OnInit{
         if (descendingFrameStart[i]['sPlayerId'] == p2id) {
           if ((descendingFrameStart[i].percentStart < p1percent)) {
             p1stocks -= 1
-            console.log('decrementing the player1 stock')
+            // console.log('decrementing the player1 stock')
           }
           // if (((descendingFrameStart[i].percentStart < p1percent) || descendingFrameStart[i].percentStart == 0) && p1firstStock) {
           //   p1firstStock = false;
@@ -291,7 +308,7 @@ export class AppComponent implements OnInit{
       }
 
 
-      console.log('******** end of createRegressionPoints *******')
+      // console.log('******** end of createRegressionPoints *******')
       return playerTuples      
     }
     
@@ -327,20 +344,20 @@ export class AppComponent implements OnInit{
         if (descendingFrameStart[i]['sPlayerId'] == p1id) {
           if ((descendingFrameStart[i].percentStart < p2percent)) {
             p2stocks -= 1
-            console.log('decrementing the player2 stock')
+            // console.log('decrementing the player2 stock')
           }
           p2percent = descendingFrameStart[i]['percentEnd']
         }
         if (descendingFrameStart[i]['sPlayerId'] == p2id) {
           if ((descendingFrameStart[i].percentStart < p1percent)) {
             p1stocks -= 1
-            console.log('decrementing the player1 stock')
+            // console.log('decrementing the player1 stock')
           }
           p1percent = descendingFrameStart[i]['percentEnd']
         }
        regressionTuples.push([p1stocks, p2stocks, p1percent, p2percent, p1win])
       }
-      console.log('******** end of createRegressionPoints *******')
+      // console.log('******** end of createRegressionPoints *******')
       return regressionTuples      
     }
 
@@ -395,7 +412,7 @@ export class AppComponent implements OnInit{
           lineChartData.push(gameWinProbabilities[j][2])
           var varIndex = this.gameIds.indexOf(gameWinProbabilities[j][0])
           var gameStart = this.allSets[this.setIndex]['gameStarts'][varIndex]
-          console.log('the game start is', gameStart)
+          // console.log('the game start is', gameStart)
           lineChartLabels.push(Math.floor(gameStart + gameWinProbabilities[j][1]/60))
         }
         // **** push either a 0 or a 1 and like 5 frames past the last frame entered to show the winner or loser
@@ -411,20 +428,20 @@ export class AppComponent implements OnInit{
       var gameIndex = this.gameIds.indexOf(gameId) //this will get us the index of the game in our array of gameIds
       //we know this index matches the index of our globalLineChartData array
       //thus we can set the data of our linechart to 
-      console.log('this is the game index', gameIndex)
-      console.log('this is the linechart data', this.lineChartData)
-      console.log('this is what im setting the data to be', this.globalLineChartData[gameIndex]['data'])
+      // console.log('this is the game index', gameIndex)
+      // console.log('this is the linechart data', this.lineChartData)
+      // console.log('this is what im setting the data to be', this.globalLineChartData[gameIndex]['data'])
       // this.lineChartData = [
       //   {data: this.globalLineChartData[gameIndex]['data'], label: gameId},
       //   ] //update the array
       this.lineChartData[0]['data'] = this.globalLineChartData[gameIndex]['data']
       this.lineChartData[0]['label'] = 'Game' + (gameIndex + 1).toString()
       // this.lineChartData[0]['label'] = gameId //update the labels
-      console.log('these are the labels i am trying to use', this.globalLineChartData[gameIndex]['labels'])
+      // console.log('these are the labels i am trying to use', this.globalLineChartData[gameIndex]['labels'])
       this.lineChartLabels = this.globalLineChartData[gameIndex]['labels']
       this.lineChartType = 'line'
       // this.lineChartData = this.lineChartData.slice();
-      console.log('this is the linechart data now, after clicking', this.lineChartData)
+      // console.log('this is the linechart data now, after clicking', this.lineChartData)
       this.lineChartOptions = {
         responsive: true,
         scales: {
@@ -491,7 +508,7 @@ export class AppComponent implements OnInit{
 
     changeVideo(videoId){
       if (window['player']) {
-        console.log('in window["player"]')
+        // console.log('in window["player"]')
       window['player'].loadVideoById(videoId);
       window['player'].playVideo();
       window['player'].seekTo(0, true);
@@ -501,12 +518,12 @@ export class AppComponent implements OnInit{
     }
 
   getSetData() {
-    console.log(this.allSets[this.setIndex]['url'])
+    // console.log(this.allSets[this.setIndex]['url'])
     this.changeVideo(this.allSets[this.setIndex]['url'])
     // window['onYouTubeIframeAPIReady'].call(null, this.allSets[this.setIndex]['url'])
 
     // this.url = this.sanitizer.bypassSecurityTrustResourceUrl(this.baseUrl+this.allSets[this.setIndex]['url'])
-    console.log('getting the set ID', this.allSets[this.setIndex]['id'])
+    // console.log('getting the set ID', this.allSets[this.setIndex]['id'])
     this._smashggService.retrieveSetData(this.allSets[this.setIndex]['id'])
     .then(data => {
       // console.log("got the data form this swag request on our server!!")
@@ -539,7 +556,7 @@ export class AppComponent implements OnInit{
       for (var gameId in this.setData['games']) {
         // this.allRegressionTuples.push(this.createRegressionPoints(gameId))
         this.playerTuplesForRegressionWithTimeAndGameId.push(this.playerStocksAndPercentAtTime(gameId))
-        console.log(gameId)
+        // console.log(gameId)
         this.gameIds.push(gameId)
 
         this.p1combos.push(this.setData['games'][gameId]['players'][0]["comboStrings"]) //for regression
@@ -564,7 +581,7 @@ export class AppComponent implements OnInit{
               this.p1Punishes.push(punishObj)
             }
             else {
-              console.log('within the else conditional now!')
+              // console.log('within the else conditional now!')
               let punishObj = this.createPunishObject(gameId, i, j)
               this.p2Damage += punishObj['damage']
               this.p2Hits += punishObj['hits'] //useless information lol or is it hits / punishes
@@ -583,7 +600,7 @@ export class AppComponent implements OnInit{
         this.p2Tag = this.setData['summary'][this.p2sggId]['gamerTag']
         this.doughnutChartData = [this.p1Punishes.length , this.p2Punishes.length ];
         this.doughnutChartLabels = [this.p1Tag, this.p2Tag]
-        console.log(this.p1Tag, this.p2Tag)
+        // console.log(this.p1Tag, this.p2Tag)
         this.doughtnutChartType = 'doughnut'
 
         //update barchart data
@@ -606,8 +623,8 @@ export class AppComponent implements OnInit{
         this.p1MaxPunish = this.p1Punishes[this.p1Punishes.map((o)=>o['damage']).indexOf(Math.max(...this.p1Punishes.map((o)=>o['damage'])))]
         this.p2MaxPunish = this.p2Punishes[this.p2Punishes.map((o)=>o['damage']).indexOf(Math.max(...this.p2Punishes.map((o)=>o['damage'])))]
         this.isDataAvailable = true;
-        console.log('printing all of the regression tuples', this.allRegressionTuples)
-        console.log('printing all of the data that we will be mapping to our graph', this.playerTuplesForRegressionWithTimeAndGameId)
+        // console.log('printing all of the regression tuples', this.allRegressionTuples)
+        // console.log('printing all of the data that we will be mapping to our graph', this.playerTuplesForRegressionWithTimeAndGameId)
           
         //lineChart generation, let's see if we can dynamically change the game...
 
@@ -632,7 +649,7 @@ export class AppComponent implements OnInit{
 
         this.globalLineChartData = this.createLineChartData(this.playerTuplesForRegressionWithTimeAndGameId)
 
-        console.log('doing the initial update')
+        // console.log('doing the initial update')
         this.updateLineChartData(this.gameIds[0])
         window['document'].all['player'].scrollIntoView(true)
 
