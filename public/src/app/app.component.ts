@@ -43,38 +43,38 @@ export class AppComponent implements OnInit{
     {id: '7650211', url: 'GSFtCbu71Oc', name: 'S2J vs. PewPewU', gameStarts: [65, 250, 460, 700], winner: 'PewPewU', loser: 'S2J', score: '3-1'},
     {id: '7713749', url: 'tF68F_EeFzY', name: 'SFAT vs. Axe', gameStarts: [50, 276, 424, 589, 866], winner: 'Axe', loser: 'SFAT', score: '3-2'},
     {id: '7713742', url: 'Seph5KmwQJU', name: 'SFAT vs. Westballz (Missing Data)', gameStarts: [131, 379, 504, 749], winner: 'SFAT', loser: 'Westballz', score: '3-1'},
-
-    {id: '8004987', url: 'C8d9KLVx4Yw', name: 'Hungrybox vs. Lucky', gameStarts: [81, 257, 424, 646], winner: 'Hungrybox', loser: 'Lucky', score: '3-1'},
-
-    {id: '8004988', url: 'qdlPWuOyC34', name: 'Westballz vs. Druggedfox', gameStarts: [76, 244, 475, 746, 979], winner: 'Druggedfox', loser: 'Westballz', score: '3-2'},
-    {id: '8004989', url: '2NJJ-TNdo8s', name: 'Swedish Delight vs. Lucky', gameStarts: [63, 232, 436, 660, 872], winner: 'Swedish Delight', loser: 'Axe', score: '3-2'},
-    {id: '8004990', url: 'yMJrCbt2oLY', name: 'SFAT vs. The Moon', gameStarts: [59, 242, 430, 724, 866], winner: 'SFAT', loser: 'The Moon', score: '3-2'},
-    {id: '8004991', url: 'ShsafkT6HbY', name: 'Mew2King vs. Shroomed', gameStarts: [81, 243, 481, 708, 935], winner: 'Mew2King', loser: 'Shroomed', score: '3-2'},
-    {id: '8004992', url: 'z1q9FoMox8I', name: 'Duck vs Wizzrobe', gameStarts: [72, 306, 650, 858], winner: 'Wizzrobe', loser: 'Duck', score: '3-1'},
-    {id: '8004993', url: 'D2Ep1XGSvqA', name: 'Mango vs. PewPewU', gameStarts: [42, 235, 471, 631, 809], winner: 'Mang0', loser: 'PewPewU', score: '3-2'},
-    {id: '8004994', url: 'sIh1PjK1fUY', name: 'ChuDat vs S2J', gameStarts: [60, 307, 522, 747], winner: 'ChuDat', loser: 'S2J', score: '3-1'},
-
-    {id: '8004995', url: 'p5phfPcBCts', name: 'Hungrybox vs Druggedfox', gameStarts: [35, 224, 428], winner: 'Hungrybox', loser: 'Druggedfox', score: '3-0'},
-    {id: '8004996', url: 'NX-QHeiOvFE', name: 'Swedish Delight vs SFAT', gameStarts: [82, 267, 510], winner: 'SFAT', loser: 'Swedish Delight', score: '3-0'},
-    {id: '8004997', url: 'dUYxhvjOcQw', name: 'Mew2King vs Wizzrobe', gameStarts: [66, 295, 453], winner: 'Wizzrobe', loser: 'Mew2King', score: '3-0'},
-    {id: '8004998', url: 'wv-oGZHxZrE', name: 'Mang0 vs ChuDat', gameStarts: [78, 311, 520, 639, 805], winner: 'ChuDat', loser: 'Mang0', score: '3-2'},
-
-    {id: '8004999', url: 'D1K385S13cw', name: 'Hungrybox vs SFAT', gameStarts: [54, 276, 579, 820], winner: 'Hungrybox', loser: 'SFAT', score: '3-1'},
-    {id: '8005000', url: 'rvGrpskrnZ0', name: 'Wizzrobe vs ChuDat', gameStarts: [92, 419, 688], winner: 'Wizzrobe', loser: 'ChuDat', score: '3-0'},
-
-    {id: '8005020', url: 'XN5P75TyV7Y', name: 'Lucky vs Westballz', gameStarts: [62, 217, 366, 555], winner: 'Lucky', loser: 'Westballz', score: '3-1'},
+    //yahoo rivalries
     {id: '8005021', url: 'sPaLethDzQ4', name: 'Axe vs The Moon', gameStarts: [60, 305, 465, 772], winner: 'Axe', loser: 'The Moon', score: '3-1'},
-    {id: '8005022', url: 'EkMqwozNJyk', name: 'Shroomed vs Duck', gameStarts: [24, 200, 543, 749, 1014], winner: 'Shroomed', loser: 'Duck', score: '3-2'},
-    {id: '8005023', url: '4LI8X_pTjDw', name: 'S2J vs PewPewU', gameStarts: [17, 248, 487, 667], winner: 'S2J', loser: 'PewPewU', score: '3-1'}, //unavailable
-
-    {id: '8005024', url: 'AhEI_L1DvZs', name: 'Mango vs Lucky', gameStarts: [89, 204, 414, 580, 707], winner: 'Mango', loser: 'Lucky', score: '3-2'},
     {id: '8005025', url: 'kF1PzaaTkgc', name: 'Axe vs Mew2King', gameStarts: [65, 312, 510, 708], winner: 'Axe', loser: 'Mew2King', score: '3-1'},
-    {id: '8005026', url: 'GtVZ31gAv7o', name: 'Swedish Delight vs Shroomed', gameStarts: [54, 297, 545, 833, 997], winner: 'Swedish Delight', loser: 'Shroomed', score: '3-2'},
+    {id: '8005031', url: 'jS_KvVBekUc', name: 'ChuDat vs DruggedFox', gameStarts: [50, 380, 592, 820, 1053], winner: 'Druggedfox', loser: 'ChuDat', score: '3-2'},
+    {id: '8004994', url: 'sIh1PjK1fUY', name: 'ChuDat vs S2J', gameStarts: [60, 307, 522, 747], winner: 'ChuDat', loser: 'S2J', score: '3-1'},
     {id: '8005027', url: 'HpkXlCJ2hcI', name: 'Druggedfox vs S2J', gameStarts: [69, 339, 582, 744], winner: 'Druggedfox', loser: 'S2J', score: '3-1'},
-    
-    // finish these, winners finals + and lqf + 
-    {id: '8005028', url: 'IWala1TlfRs', name: 'Mang0 vs Axe', gameStarts: [69, 339, 582, 744], winner: 'Axe', loser: 'Mang0', score: '3-1'},
-    {id: '8005029', url: 'uo65_b3Qmdo', name: 'Swedish Delight vs DruggedFox', gameStarts: [69, 339, 582, 744], winner: 'Druggedfox', loser: 'Swedish Delight', score: '3-0'},
+    {id: '8004992', url: 'z1q9FoMox8I', name: 'Duck vs Wizzrobe', gameStarts: [72, 306, 650, 858], winner: 'Wizzrobe', loser: 'Duck', score: '3-1'},
+    {id: '8004987', url: 'C8d9KLVx4Yw', name: 'Hungrybox vs. Lucky', gameStarts: [81, 257, 424, 646], winner: 'Hungrybox', loser: 'Lucky', score: '3-1'},
+    {id: '8004995', url: 'p5phfPcBCts', name: 'Hungrybox vs Druggedfox', gameStarts: [35, 224, 428], winner: 'Hungrybox', loser: 'Druggedfox', score: '3-0'},
+    {id: '8004999', url: 'D1K385S13cw', name: 'Hungrybox vs SFAT', gameStarts: [54, 276, 579, 820], winner: 'Hungrybox', loser: 'SFAT', score: '3-1'},
+    {id: '8005001', url: 'ohWTH-W4GgA', name: 'Hungrybox vs Wizzrobe (Winners Finals)', gameStarts: [50, 296, 645], winner: 'Hungrybox', loser: 'Wizzrobe', score: '3-0'},
+    {id: '8005002', url: 'RCHVmxWhWi0', name: 'Hungrybox vs Wizzrobe (Grand Finals Set 1)', gameStarts: [62, 390, 605, 896, 1426], winner: 'Wizzrobe', loser: 'Hungrybox', score: '3-2'},
+    {id: '8005003', url: 'RCHVmxWhWi0', name: 'Hungrybox vs Wizzrobe (Grand Finals Set 2)', gameStarts: [1904, 2140, 2455], winner: 'Hungrybox', loser: 'Wizzrobe', score: '3-0'},
+    {id: '8005020', url: 'XN5P75TyV7Y', name: 'Lucky vs Westballz', gameStarts: [62, 217, 366, 555], winner: 'Lucky', loser: 'Westballz', score: '3-1'},
+    {id: '8005028', url: 'IWala1TlfRs', name: 'Mang0 vs Axe', gameStarts: [55, 181, 369, 54], winner: 'Axe', loser: 'Mang0', score: '3-1'},
+    {id: '8004998', url: 'wv-oGZHxZrE', name: 'Mang0 vs ChuDat', gameStarts: [78, 311, 520, 639, 805], winner: 'ChuDat', loser: 'Mang0', score: '3-2'},
+    {id: '8005024', url: 'AhEI_L1DvZs', name: 'Mang0 vs Lucky (Missing Data)', gameStarts: [89, 204, 414, 580, 707], winner: 'Mang0', loser: 'Lucky', score: '3-2'},
+    {id: '8004993', url: 'D2Ep1XGSvqA', name: 'Mang0 vs. PewPewU', gameStarts: [42, 235, 471, 631, 809], winner: 'Mang0', loser: 'PewPewU', score: '3-2'},
+    {id: '8004991', url: 'ShsafkT6HbY', name: 'Mew2King vs. Shroomed', gameStarts: [81, 243, 481, 708, 935], winner: 'Mew2King', loser: 'Shroomed', score: '3-2'},
+    {id: '8004997', url: 'dUYxhvjOcQw', name: 'Mew2King vs Wizzrobe', gameStarts: [66, 295, 453], winner: 'Wizzrobe', loser: 'Mew2King', score: '3-0'},
+    {id: '8005023', url: '4LI8X_pTjDw', name: 'S2J vs PewPewU', gameStarts: [17, 248, 487, 667], winner: 'S2J', loser: 'PewPewU', score: '3-1'}, //unavailable
+    {id: '8005030', url: '5RJq70F1js0', name: 'SFAT vs Axe', gameStarts: [34, 311, 430, 629], winner: 'SFAT', loser: 'Axe', score: '3-1'},
+    {id: '8005032', url: 'qstmW4-20aw', name: 'SFAT vs DruggedFox', gameStarts: [48, 309, 536, 761, 1035], winner: 'DruggedFox', loser: 'SFAT', score: '3-2'},
+    {id: '8004990', url: 'yMJrCbt2oLY', name: 'SFAT vs. The Moon', gameStarts: [59, 242, 430, 724, 866], winner: 'SFAT', loser: 'The Moon', score: '3-2'},
+    {id: '8005022', url: 'EkMqwozNJyk', name: 'Shroomed vs Duck', gameStarts: [24, 200, 543, 749, 1014], winner: 'Shroomed', loser: 'Duck', score: '3-2'},
+    {id: '8004989', url: '2NJJ-TNdo8s', name: 'Swedish Delight vs. Lucky', gameStarts: [63, 232, 436, 660, 872], winner: 'Swedish Delight', loser: 'Axe', score: '3-2'},
+    {id: '8004996', url: 'NX-QHeiOvFE', name: 'Swedish Delight vs SFAT', gameStarts: [82, 267, 510], winner: 'SFAT', loser: 'Swedish Delight', score: '3-0'},
+    {id: '8005029', url: 'uo65_b3Qmdo', name: 'Swedish Delight vs DruggedFox', gameStarts: [64, 245, 404], winner: 'Druggedfox', loser: 'Swedish Delight', score: '3-0'},
+    {id: '8005026', url: 'GtVZ31gAv7o', name: 'Swedish Delight vs Shroomed', gameStarts: [54, 297, 545, 833, 997], winner: 'Swedish Delight', loser: 'Shroomed', score: '3-2'},
+    {id: '8004988', url: 'qdlPWuOyC34', name: 'Westballz vs. Druggedfox', gameStarts: [76, 244, 475, 746, 979], winner: 'Druggedfox', loser: 'Westballz', score: '3-2'},
+    {id: '8005000', url: 'rvGrpskrnZ0', name: 'Wizzrobe vs ChuDat', gameStarts: [92, 419, 688], winner: 'Wizzrobe', loser: 'ChuDat', score: '3-0'},
+    {id: '8005033', url: '4NwBj2l4nLY', name: 'Wizzrobe vs Druggedfox', gameStarts: [82, 347, 578], winner: 'Wizzrobe', loser: 'Druggedfox', score: '3-0'},
 
     
 
