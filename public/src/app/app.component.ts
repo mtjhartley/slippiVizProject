@@ -65,12 +65,18 @@ export class AppComponent implements OnInit{
     {id: '8005020', url: 'XN5P75TyV7Y', name: 'Lucky vs Westballz', gameStarts: [62, 217, 366, 555], winner: 'Lucky', loser: 'Westballz', score: '3-1'},
     {id: '8005021', url: 'sPaLethDzQ4', name: 'Axe vs The Moon', gameStarts: [60, 305, 465, 772], winner: 'Axe', loser: 'The Moon', score: '3-1'},
     {id: '8005022', url: 'EkMqwozNJyk', name: 'Shroomed vs Duck', gameStarts: [24, 200, 543, 749, 1014], winner: 'Shroomed', loser: 'Duck', score: '3-2'},
-    // {id: '8005023', url: '4LI8X_pTjDw', name: 'S2J vs PewPewU', gameStarts: [92, 419, 688], winner: 'S2J', loser: 'PewPewU', score: '3-1'}, //unavailable
+    {id: '8005023', url: '4LI8X_pTjDw', name: 'S2J vs PewPewU', gameStarts: [17, 248, 487, 667], winner: 'S2J', loser: 'PewPewU', score: '3-1'}, //unavailable
 
-    //{id: '8005024', url: 'AhEI_L1DvZs', name: 'Mango vs Lucky', gameStarts: [24, 200, 543, 749, 1014], winner: 'Mango', loser: 'Lucky', score: '3-2'},
-    // {id: '8005025', url: 'kF1PzaaTkgc', name: 'Axe vs Mew2King', gameStarts: [24, 200, 543, 749, 1014], winner: 'Axe', loser: 'Mew2King', score: '3-1'},
-    {id: '8005022', url: 'EkMqwozNJyk', name: 'Shroomed vs Duck', gameStarts: [24, 200, 543, 749, 1014], winner: 'Shroomed', loser: 'Duck', score: '3-2'},
-    {id: '8005022', url: 'EkMqwozNJyk', name: 'Shroomed vs Duck', gameStarts: [24, 200, 543, 749, 1014], winner: 'Shroomed', loser: 'Duck', score: '3-2'},
+    {id: '8005024', url: 'AhEI_L1DvZs', name: 'Mango vs Lucky', gameStarts: [89, 204, 414, 580, 707], winner: 'Mango', loser: 'Lucky', score: '3-2'},
+    {id: '8005025', url: 'kF1PzaaTkgc', name: 'Axe vs Mew2King', gameStarts: [65, 312, 510, 708], winner: 'Axe', loser: 'Mew2King', score: '3-1'},
+    {id: '8005026', url: 'GtVZ31gAv7o', name: 'Swedish Delight vs Shroomed', gameStarts: [54, 297, 545, 833, 997], winner: 'Swedish Delight', loser: 'Shroomed', score: '3-2'},
+    {id: '8005027', url: 'HpkXlCJ2hcI', name: 'Druggedfox vs S2J', gameStarts: [69, 339, 582, 744], winner: 'Druggedfox', loser: 'S2J', score: '3-1'},
+    
+    // finish these, winners finals + and lqf + 
+    {id: '8005028', url: 'IWala1TlfRs', name: 'Mang0 vs Axe', gameStarts: [69, 339, 582, 744], winner: 'Axe', loser: 'Mang0', score: '3-1'},
+    {id: '8005029', url: 'uo65_b3Qmdo', name: 'Swedish Delight vs DruggedFox', gameStarts: [69, 339, 582, 744], winner: 'Druggedfox', loser: 'Swedish Delight', score: '3-0'},
+
+    
 
 
     
