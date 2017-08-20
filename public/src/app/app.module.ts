@@ -8,10 +8,12 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
+import { TimestampPipe } from './timestamp.pipe';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TimestampPipe
   ],
   imports: [
     BrowserModule,
